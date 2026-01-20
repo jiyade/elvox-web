@@ -1,6 +1,7 @@
 import { LuUserRound, LuLogOut, LuLock } from "react-icons/lu"
 import { useAuthStore } from "../stores"
 import { Link } from "react-router-dom"
+import { notifyMobileLogout } from "../utils/mobileBridge"
 
 const ProfileMenu = ({
     profileMenuRef,
@@ -48,6 +49,7 @@ const ProfileMenu = ({
                     onClick={() => {
                         setShowProfileMenu(false)
                         logout()
+                        notifyMobileLogout()
                     }}
                 >
                     <LuLogOut className='text-base' />

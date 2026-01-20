@@ -6,6 +6,7 @@ import Input from "./Input"
 import { useAuthStore } from "../stores"
 import toast from "react-hot-toast"
 import validateEmailOrPhone from "../utils/validateEmailOrPhone"
+import { notifyMobileLogin } from "../utils/mobileBridge"
 
 const LoginForm = ({ setIsLoading }) => {
     const {
@@ -25,6 +26,7 @@ const LoginForm = ({ setIsLoading }) => {
             const { user } = await res.data
             if (user) {
                 login(user)
+                notifyMobileLogin(user.id)
                 navigate("/")
                 toast.success(`Welcome back ${user.name}`, {
                     id: "login-success"

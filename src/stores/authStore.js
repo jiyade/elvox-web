@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import api from "../api/api"
 import toast from "react-hot-toast"
+import { notifyMobileIfLoggedIn } from "../utils/mobileBridge"
 
 const useAuthStore = create((set) => ({
     isAuthenticated: false,
@@ -20,6 +21,7 @@ const useAuthStore = create((set) => ({
             setIsLoading(true)
             const res = await api.get("/auth/me")
             const user = res.data
+            notifyMobileIfLoggedIn(user.id)
 
             set({
                 user,

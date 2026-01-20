@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form"
 import toast from "react-hot-toast"
 import api from "../api/api"
 import { useAuthStore } from "../stores"
+import { notifyMobileLogin } from "../utils/mobileBridge.js"
 
 const SignUpForm = ({ children, setIsLoading }) => {
     const { handleSubmit, getValues } = useFormContext()
@@ -42,6 +43,7 @@ const SignUpForm = ({ children, setIsLoading }) => {
 
                 if (res.status === 201) {
                     login(res.data.user)
+                    notifyMobileLogin(res.data.user.id)
                     navigate("/")
                     toast.success(`Welcome ${res.data.name}!`, {
                         id: "signup-success"
