@@ -60,7 +60,7 @@ const SelectCategory = () => {
                     <ListboxOptions className='flex flex-col border border-gray-500 rounded-md w-full'>
                         <ListboxOption
                             value='general'
-                            className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent break-words'
+                            className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent [word-break:break-word]'
                         >
                             <span>General</span>
                             <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
@@ -68,7 +68,7 @@ const SelectCategory = () => {
                         {user?.gender === "female" && isReservedClass && (
                             <ListboxOption
                                 value='reserved'
-                                className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer rounded-sm hover:bg-accent break-words'
+                                className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer rounded-sm hover:bg-accent [word-break:break-word]'
                             >
                                 <span>Reserved</span>
                                 <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />

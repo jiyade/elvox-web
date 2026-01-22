@@ -24,7 +24,7 @@ const ResultsFiltersNonMobilecreen = ({
         <div
             className={`flex items-center gap-3 transition-all duration-200 ease-out ${
                 electionOpen || yearOpen || classOpen || statusOpen
-                    ? "w-lg"
+                    ? "sm:w-lg md:w-xl"
                     : "w-md"
             }`}
         >
