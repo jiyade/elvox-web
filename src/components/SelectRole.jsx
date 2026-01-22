@@ -65,14 +65,14 @@ const SelectRole = () => {
                                 className='cursor-pointer px-2 py-1 rounded grid grid-cols-[auto_1fr] items-center hover:bg-accent hover:text-primary-dark outline-none break-words'
                             >
                                 <span>Student</span>
-                                <HiCheck className='invisible size-4 group-data-selected:visible' />
+                                <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
                             </ListboxOption>
                             <ListboxOption
                                 value='teacher'
                                 className='cursor-pointer px-2 py-1 rounded grid grid-cols-[auto_1fr] items-center hover:bg-accent hover:text-primary-dark outline-none break-words'
                             >
                                 <span>Teacher</span>
-                                <HiCheck className='invisible size-4 group-data-selected:visible' />
+                                <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
                             </ListboxOption>
                         </ListboxOptions>
                     </Listbox>

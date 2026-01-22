@@ -26,14 +26,14 @@ const SortByTime = ({ sort, setSort, className }) => {
                         className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent truncate rounded-sm break-words'
                     >
                         <span>Latest</span>
-                        <HiCheck className='invisible size-4 group-data-selected:visible' />
+                        <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
                     </ListboxOption>
                     <ListboxOption
                         value='oldest'
                         className='group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent truncate rounded-sm break-words'
                     >
                         <span>Oldest</span>
-                        <HiCheck className='invisible size-4 group-data-selected:visible' />
+                        <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
                     </ListboxOption>
                 </ListboxOptions>
             </Listbox>

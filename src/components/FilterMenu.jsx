@@ -90,7 +90,7 @@ const FilterMenu = ({
                             }`}
                         >
                             <span>{option?.label}</span>
-                            <HiCheck className='invisible size-4 group-data-selected:visible' />
+                            <HiCheck className='invisible size-4 group-data-selected:visible justify-self-end' />
                         </ListboxOption>
                     ))}
                 </ListboxOptions>
