@@ -17,7 +17,9 @@ const Nominee = ({ number, setIsLoading }) => {
     const fetchData = async () => {
         if (!admno) return
 
-        const otherNomineeAdmno = getValues("nomineeTwoAdmno")
+        const otherNomineeAdmno = getValues(
+            `nominee${Number(number) === 1 ? 2 : 1}.admno`
+        )
 
         if (admno === otherNomineeAdmno) {
             toast.error("Nominees cannot be the same person", {
