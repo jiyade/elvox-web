@@ -85,7 +85,7 @@ const FilterMenu = ({
                         <ListboxOption
                             key={option?.value}
                             value={option?.value}
-                            className={`group flex justify-between items-center gap-2 px-3 py-2 cursor-pointer text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent break-words ${
+                            className={`group grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 cursor-pointer text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent break-words ${
                                 !forLogs ? "rounded-sm" : ""
                             }`}
                         >
