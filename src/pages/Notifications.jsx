@@ -54,7 +54,7 @@ const Notifications = () => {
     if (isLoading) return null
 
     return (
-        <div className='flex flex-col items-center px-2 md:px-5 lg:px-9 pb-5 pt-8 flex-1 min-h-0'>
+        <div className='flex flex-col justify-center min-h-0 items-center px-2 md:px-5 lg:px-9 py-2 flex-1'>
             <title>Notifications</title>
             <div className='flex flex-col w-full gap-5 max-w-4xl flex-1 min-h-0'>
                 {notifications?.length > 0 && (

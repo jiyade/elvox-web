@@ -10,7 +10,7 @@ import capitalize from "../utils/capitalize"
 const SortByTime = ({ sort, setSort, className }) => {
     return (
         <div
-            className={`flex flex-col relative flex-1 w-full  transition-all duration-200 ease-out ${className}`}
+            className={`flex flex-col relative flex-1 w-full transition-all duration-200 ease-out ${className}`}
         >
             <Listbox
                 value={sort}

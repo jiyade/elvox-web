@@ -55,8 +55,8 @@ const FilterMenu = ({
                         !forLogs
                             ? "bg-field-light dark:bg-field-dark rounded-md"
                             : disabled
-                            ? "border border-[#b7bdc1] dark:border-[#38383a]"
-                            : "border border-gray-500"
+                              ? "border border-[#b7bdc1] dark:border-[#38383a]"
+                              : "border border-gray-500"
                     } ${
                         disabled
                             ? "cursor-not-allowed text-[#797979]"
@@ -68,9 +68,9 @@ const FilterMenu = ({
                             label ? (showSelected ? `${label}: ` : label) : ""
                         } ${
                             showSelected
-                                ? options.find(
+                                ? (options.find(
                                       (option) => option.value === filter
-                                  )?.label ?? ""
+                                  )?.label ?? "")
                                 : ""
                         }`}
                     </span>

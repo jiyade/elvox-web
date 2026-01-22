@@ -3,7 +3,7 @@ import SortByTime from "./SortByTime"
 
 const NotificationFilterAndSort = ({ sort, setSort, filter, setFilter }) => {
     return (
-        <div className='flex h-10 gap-3'>
+        <div className='flex gap-3 mt-6'>
             <FilterMenu
                 filter={filter}
                 setFilter={setFilter}
