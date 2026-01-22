@@ -88,7 +88,12 @@ const ResultsHeader = ({
             </div>
             <div className='flex flex-col justify-between gap-3'>
                 <div className='flex items-center justify-between gap-3'>
-                    <h2 className='text-base sm:text-lg lg:text-xl font-semibold text-primary-light dark:text-primary-dark'>
+                    <h2
+                        className='text-base sm:text-lg lg:text-xl font-semibold text-primary-light dark:text-primary-dark cursor-pointer'
+                        onClick={() =>
+                            setShowElectionDetails((state) => !state)
+                        }
+                    >
                         {elections.find((el) => el.value === electionId)
                             ?.label || ""}
                     </h2>
