@@ -65,8 +65,9 @@ const AuditLogs = () => {
             try {
                 setLogsLoading(true)
                 const res = await api.get(
-                    `/elections/${electionId}/logs?range=${timeRange}`
+                    `/elections/${electionId}/logs?range=${electionId !== election?.id ? "all" : timeRange}`
                 )
+
                 setLogs(res.data)
             } catch (err) {
                 if (err.response)
@@ -79,7 +80,7 @@ const AuditLogs = () => {
         }
 
         fetchLogs()
-    }, [electionId, logMode, timeRange])
+    }, [electionId, logMode, timeRange, election?.id])
 
     useEffect(() => {
         if (!electionId || logsLoading || logMode !== "live") {
@@ -195,8 +196,8 @@ const AuditLogs = () => {
                                             {status === "connected"
                                                 ? "Connected — showing live logs"
                                                 : status === "connecting"
-                                                ? "Connecting to live logs…"
-                                                : "Disconnected — live updates paused"}
+                                                  ? "Connecting to live logs…"
+                                                  : "Disconnected — live updates paused"}
                                         </span>
                                         <div className='flex-1 h-[0.5px] bg-gray-500/70' />
                                     </div>
@@ -217,8 +218,8 @@ const AuditLogs = () => {
                                                 log?.level === "error"
                                                     ? "text-[#df0000] dark:text-red-500"
                                                     : log?.level === "warning"
-                                                    ? "text-[#cb9100] dark:text-yellow-500"
-                                                    : ""
+                                                      ? "text-[#cb9100] dark:text-yellow-500"
+                                                      : ""
                                             }
                                         >
                                             {log?.level?.toUpperCase()}
@@ -228,8 +229,8 @@ const AuditLogs = () => {
                                                 log?.level === "error"
                                                     ? "text-[#df0000] dark:text-red-500"
                                                     : log?.level === "warning"
-                                                    ? "text-[#cb9100] dark:text-yellow-500"
-                                                    : ""
+                                                      ? "text-[#cb9100] dark:text-yellow-500"
+                                                      : ""
                                             }
                                         >
                                             {log?.message}
