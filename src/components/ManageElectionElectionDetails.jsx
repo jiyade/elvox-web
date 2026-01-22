@@ -1,16 +1,8 @@
 import capitalize from "../utils/capitalize"
-import { FaRegCalendar } from "react-icons/fa"
 import { useElectionStore } from "../stores"
 import Button from "./Button"
 import Countdown from "./Countdown"
-
-const formatDate = (value) =>
-    new Date(value)
-        .toLocaleString("en-IN", {
-            dateStyle: "medium",
-            timeStyle: "short"
-        })
-        .replace(/\b(am|pm)\b/, (m) => m.toUpperCase())
+import DateAndTimeDisplay from "./DateAndTimeDisplay"
 
 const ManageElectionElectionDetails = ({ setShowEditElectionModal }) => {
     const { election } = useElectionStore()
@@ -35,57 +27,29 @@ const ManageElectionElectionDetails = ({ setShowEditElectionModal }) => {
             <div className='grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-x-10 py-3 text-primary-light dark:text-primary-dark'>
                 <div className='flex flex-col gap-2'>
                     <p>Election Start</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.election_start)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay timestamp={election?.election_start} />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <p>Nomination Start</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.nomination_start)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay
+                        timestamp={election?.nomination_start}
+                    />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <p>Nomination End</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.nomination_end)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay timestamp={election?.nomination_end} />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <p>Voting Start</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.voting_start)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay timestamp={election?.voting_start} />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <p>Voting End</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.voting_end)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay timestamp={election?.voting_end} />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <p>Election End</p>
-                    <p className='flex items-center flex-1 gap-2'>
-                        <FaRegCalendar className='text-accent' />
-                        <span className='font-semibold'>
-                            {formatDate(election?.election_end)}
-                        </span>
-                    </p>
+                    <DateAndTimeDisplay timestamp={election?.election_end} />
                 </div>
             </div>
             <div className='flex flex-col gap-2 self-end mt-2'>
