@@ -3,7 +3,6 @@ import { useMediaQuery } from "react-responsive"
 import SortCandidates from "./SortCandidates"
 import FilterCandidatesByClass from "./FilterCandidatesByClass"
 import FilterMenu from "./FilterMenu"
-import { useState } from "react"
 import { useAuthStore } from "../stores"
 
 const ViewCandidatesHeader = ({
@@ -18,10 +17,6 @@ const ViewCandidatesHeader = ({
     status,
     setStatus
 }) => {
-    const [yearOpen, setYearOpen] = useState(false)
-    const [classOpen, setClassOpen] = useState(false)
-    const [statusOpen, setStatusOpen] = useState(false)
-
     const isNotMobile = useMediaQuery({ minWidth: 640 })
 
     const {
@@ -29,7 +24,7 @@ const ViewCandidatesHeader = ({
     } = useAuthStore()
 
     return (
-        <div className='flex flex-col gap-3'>
+        <div className='flex flex-col w-full gap-3'>
             <div className='flex gap-3'>
                 <div className='w-full flex-3 relative sm:flex-4 md:flex-5 lg:flex-7'>
                     <span className='flex justify-center items-center text-secondary-light dark:text-secondary-dark p-2 inset-y-0 absolute'>
@@ -51,12 +46,8 @@ const ViewCandidatesHeader = ({
                     />
                 </div>
             </div>
-            <div className='flex gap-3'>
-                <div
-                    className={`flex flex-col w-full relative transition-all duration-200 ease-out ${
-                        yearOpen ? "max-sm:flex-2 flex-1" : "flex-1"
-                    }`}
-                >
+            <div className='flex flex-1 gap-3 w-full'>
+                <div className={`flex flex-col w-full relative flex-1`}>
                     <FilterMenu
                         options={[
                             { value: "all", label: "All" },
@@ -68,29 +59,19 @@ const ViewCandidatesHeader = ({
                         filter={year}
                         setFilter={setYear}
                         label={year === "all" || !isNotMobile ? "Year" : ""}
-                        onOpenChange={setYearOpen}
                         showSelected={isNotMobile}
                     />
                 </div>
-                <div
-                    className={`flex flex-col w-full relative transition-all duration-200 ease-out ${
-                        classOpen ? "max-sm:flex-2 flex-1" : "flex-1"
-                    }`}
-                >
+                <div className={`flex flex-col w-full relative flex-1`}>
                     <FilterCandidatesByClass
                         className={className}
                         setClassName={setClassName}
-                        onOpenChange={setClassOpen}
                         showSelected={isNotMobile}
                         showLabel={className === "all" || !isNotMobile}
                     />
                 </div>
                 {role === "admin" && (
-                    <div
-                        className={`flex flex-col w-full relative transition-all duration-200 ease-out ${
-                            statusOpen ? "max-sm:flex-2 flex-1" : "flex-1"
-                        }`}
-                    >
+                    <div className={`flex flex-col w-full relative flex-1`}>
                         <FilterMenu
                             options={[
                                 { value: "all", label: "All" },
@@ -104,7 +85,6 @@ const ViewCandidatesHeader = ({
                             label={
                                 status === "all" || !isNotMobile ? "Status" : ""
                             }
-                            onOpenChange={setStatusOpen}
                             showSelected={isNotMobile}
                         />
                     </div>

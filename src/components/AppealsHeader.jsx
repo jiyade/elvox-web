@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useAuthStore } from "../stores"
 import Button from "./Button"
 import FilterMenu from "./FilterMenu"
@@ -15,10 +14,6 @@ const AppealsHeader = ({
     electionId,
     setElectionId
 }) => {
-    const [electionOpen, setElectionOpen] = useState(false)
-    const [categoryOpen, setCategoryOpen] = useState(false)
-    const [sortOpen, setSortOpen] = useState(false)
-
     const {
         user: { role }
     } = useAuthStore()
@@ -40,26 +35,17 @@ const AppealsHeader = ({
                 </>
             )}
             {role === "admin" && (
-                <div className='flex gap-3 w-full transition-all duration-200 ease-out'>
-                    <div
-                        className={`flex relative transition-all duration-200 ease-out flex-1 ${
-                            electionOpen ? "max-sm:flex-2" : "max-sm:flex-[0.6]"
-                        }`}
-                    >
+                <div className='flex gap-3 w-full'>
+                    <div className={`flex relative flex-1 `}>
                         <FilterMenu
                             options={elections}
                             filter={electionId}
                             setFilter={setElectionId}
                             label={isMedium ? "" : "Election"}
                             showSelected={isMedium}
-                            onOpenChange={setElectionOpen}
                         />
                     </div>
-                    <div
-                        className={`flex relative transition-all duration-200 ease-out flex-1 ${
-                            categoryOpen ? "max-sm:flex-2" : "max-sm:flex-[0.6]"
-                        }`}
-                    >
+                    <div className={`flex relative flex-1 `}>
                         <FilterMenu
                             filter={category}
                             setFilter={setCategory}
@@ -89,18 +75,12 @@ const AppealsHeader = ({
                                 { value: "other", label: "Other" }
                             ]}
                             showSelected={isMedium}
-                            onOpenChange={setCategoryOpen}
                         />
                     </div>
-                    <div
-                        className={`flex relative transition-all duration-200 ease-out ${
-                            isMedium ? "flex-1" : "flex-[0.8]"
-                        } ${sortOpen ? "max-sm:flex-2" : "max-sm:flex-[0.6]"}`}
-                    >
+                    <div className={`flex relative flex-1`}>
                         <SortByTime
                             sort={sort}
                             setSort={setSort}
-                            onOpenChange={setSortOpen}
                         />
                     </div>
                 </div>
