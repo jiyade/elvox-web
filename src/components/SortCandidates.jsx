@@ -19,14 +19,14 @@ const SortCandidates = ({ sort, setSort }) => {
             <ListboxOptions className='flex flex-col border border-gray-500 rounded-xl focus:outline-none text-sm absolute w-full top-12 z-10 bg-bg-light dark:bg-bg-dark'>
                 <ListboxOption
                     value='name'
-                    className='group flex justify-between items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent'
+                    className='group flex justify-between items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent break-words'
                 >
                     <span>Name</span>
                     <HiCheck className='invisible size-4 group-data-selected:visible' />
                 </ListboxOption>
                 <ListboxOption
                     value='latest'
-                    className='group flex justify-between items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent'
+                    className='group flex justify-between items-center gap-2 px-3 py-2 cursor-pointer rounded-sm text-primary-light dark:text-primary-dark hover:text-primary-dark hover:bg-accent break-words'
                 >
                     <span>Latest</span>
                     <HiCheck className='invisible size-4 group-data-selected:visible' />
