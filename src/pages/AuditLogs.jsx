@@ -99,7 +99,7 @@ const AuditLogs = () => {
         const es = new EventSource(
             `${
                 import.meta.env.VITE_API_URL
-            }/elections/${electionId}/logs/stream`,
+            }/elections/${electionId}/events/stream`,
             {
                 withCredentials: true
             }
