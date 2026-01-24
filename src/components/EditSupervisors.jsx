@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { useElectionStore, useModalStore } from "../stores"
+import { useElectionStore } from "../stores"
 import api from "../api/api"
 import toast from "react-hot-toast"
 import FullScreenLoader from "./FullScreenLoader"
@@ -127,7 +127,9 @@ const EditSupervisors = ({
         const fetchEligbileTeachers = async () => {
             try {
                 setIsLoading(true)
-                const res = await api.get(`/teachers/supervisor-eligible`)
+                const res = await api.get(
+                    `/teachers/supervisor-eligible/${election?.id}`
+                )
                 setEligibleTeachers(res.data)
             } catch (err) {
                 toast.error(
@@ -141,7 +143,7 @@ const EditSupervisors = ({
         }
 
         fetchEligbileTeachers()
-    }, [])
+    }, [election?.id])
 
     return (
         <Modal

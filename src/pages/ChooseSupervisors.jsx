@@ -19,7 +19,7 @@ const ChooseSupervisors = () => {
     const fetchSupervisors = useCallback(async () => {
         try {
             setIsLoading(true)
-            const res = await api.get(`/elections/supervisors`)
+            const res = await api.get(`/elections/${election?.id}/supervisors`)
             setSupervisors(res.data)
         } catch (err) {
             toast.error(
@@ -30,7 +30,7 @@ const ChooseSupervisors = () => {
         } finally {
             setIsLoading(false)
         }
-    }, [setIsLoading])
+    }, [setIsLoading, election?.id])
 
     useEffect(() => {
         fetchSupervisors()
