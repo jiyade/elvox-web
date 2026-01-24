@@ -20,7 +20,7 @@ const DashboardOptionsSupervisor = () => {
             <Link to='/verify-voter'>
                 <Button className='flex flex-col justify-center items-center py-5 lg:py-7 gap-1 bg-accent hover:bg-button-hover w-full h-full'>
                     <TbUserCheck className='text-primary-dark text-base lg:text-lg' />
-                    <span className=''>Verify Voters</span>
+                    <span className=''>Verify Voter</span>
                 </Button>
             </Link>
             {tutor_of !== null && (

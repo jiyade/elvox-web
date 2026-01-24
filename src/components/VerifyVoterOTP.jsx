@@ -41,6 +41,32 @@ const VerifyVoterOTP = ({ otpData, nextStep }) => {
         }
     }, [expiresAtMs, nextStep, total])
 
+    useEffect(() => {
+        const es = new EventSource(
+            `${import.meta.env.VITE_API_URL}/elections/${otpData.electionId}/events/stream`,
+            {
+                withCredentials: true
+            }
+        )
+
+        es.onmessage = (event) => {
+            const data = JSON.parse(event.data)
+
+            if (data.type === "otp-used" && data.admno === otpData.admno) {
+                es.close()
+                nextStep()
+            }
+        }
+
+        es.onerror = () => {
+            es.close()
+        }
+
+        return () => {
+            es.close()
+        }
+    }, [otpData.admno, otpData.electionId, nextStep])
+
     return (
         <div className='flex flex-col items-center w-full gap-8 max-sm:px-6 max-sm:py-4'>
             <div className='flex flex-col items-center gap-6'>
