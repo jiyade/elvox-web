@@ -33,6 +33,10 @@
     --otp-trail: var(--color-field-dark);
 }
 
+* {
+    outline: none;
+}
+
 body {
     font-family: "Inter", sans-serif;
 }
