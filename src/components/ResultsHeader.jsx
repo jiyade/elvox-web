@@ -1,6 +1,7 @@
 import Button from "./Button"
 import { useState } from "react"
-import ResultsFiltersMobile from "./ResultsFiltersMobile"
+import MobileFiltersContainer from "./MobileFiltersContainer"
+import ResultFiltersMobile from "./ResultFiltersMobile"
 import ResultsFiltersNonMobilecreen from "./ResultsFiltersNonMobilecreen"
 import ElectionDetails from "./ElectionDetails"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi"
@@ -42,19 +43,23 @@ const ResultsHeader = ({
                         />
                     </div>
                     {showMobileFilters && (
-                        <ResultsFiltersMobile
+                        <MobileFiltersContainer
                             showMobileFilters={showMobileFilters}
                             setShowMobileFilters={setShowMobileFilters}
-                            elections={elections}
-                            electionId={electionId}
-                            setElectionId={setElectionId}
-                            year={year}
-                            setYear={setYear}
-                            classValue={classValue}
-                            setClassValue={setClassValue}
-                            status={status}
-                            setStatus={setStatus}
-                        />
+                            modalId='Result Filters'
+                        >
+                            <ResultFiltersMobile
+                                elections={elections}
+                                electionId={electionId}
+                                setElectionId={setElectionId}
+                                year={year}
+                                setYear={setYear}
+                                classValue={classValue}
+                                setClassValue={setClassValue}
+                                status={status}
+                                setStatus={setStatus}
+                            />
+                        </MobileFiltersContainer>
                     )}
                 </div>
 
