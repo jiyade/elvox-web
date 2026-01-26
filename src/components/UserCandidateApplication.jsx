@@ -29,6 +29,7 @@ const personalFields = [
     "class",
     "semester",
     "batch",
+    "category",
     "email",
     "phone"
 ]
@@ -75,7 +76,7 @@ const formatDate = (value) =>
 const formatValue = (field, value) => {
     if (!value) return null
 
-    if (field === "status") return capitalize(value)
+    if (field === "status" || field === "category") return capitalize(value)
     if (
         field === "created_at" ||
         field === "updated_at" ||

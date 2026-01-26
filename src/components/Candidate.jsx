@@ -57,16 +57,21 @@ const Candidate = ({ candidate }) => {
                             {getYear(candidate?.semester)}
                         </p>
                     </div>
+                    <div className='flex items-center'>
+                        <p className='text-xs'>
+                            {capitalize(candidate.category)}
+                        </p>
+                    </div>
                     <div className='grid grid-cols-2 sm:flex'>
                         <p className='text-secondary-light dark:text-secondary-dark text-xs sm:text-center sm:gap-1 flex max-sm:flex-col'>
                             <span>
                                 {candidate?.status === "approved"
                                     ? "Approved"
                                     : candidate?.status === "rejected"
-                                    ? "Rejected"
-                                    : candidate?.status === "withdrawn"
-                                    ? "Withdrew"
-                                    : "Submitted"}{" "}
+                                      ? "Rejected"
+                                      : candidate?.status === "withdrawn"
+                                        ? "Withdrew"
+                                        : "Submitted"}{" "}
                                 on:
                             </span>
                             <span>
