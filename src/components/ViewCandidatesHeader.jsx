@@ -1,9 +1,9 @@
 import { IoSearch } from "react-icons/io5"
-import { useMediaQuery } from "react-responsive"
 import SortCandidates from "./SortCandidates"
-import FilterCandidatesByClass from "./FilterCandidatesByClass"
-import FilterMenu from "./FilterMenu"
-import { useAuthStore } from "../stores"
+import MobileFiltersContainer from "./MobileFiltersContainer"
+import ViewCandidatesFilters from "./ViewCandidatesFilters"
+import { useState } from "react"
+import Button from "./Button"
 
 const ViewCandidatesHeader = ({
     nameInput,
@@ -15,13 +15,11 @@ const ViewCandidatesHeader = ({
     year,
     setYear,
     status,
-    setStatus
+    setStatus,
+    category,
+    setCategory
 }) => {
-    const isNotMobile = useMediaQuery({ minWidth: 640 })
-
-    const {
-        user: { role }
-    } = useAuthStore()
+    const [showMobileFilters, setShowMobileFilters] = useState(false)
 
     return (
         <div className='flex flex-col w-full gap-3'>
@@ -33,63 +31,59 @@ const ViewCandidatesHeader = ({
                     <input
                         type='text'
                         id='candidate-name'
-                        className='outline-none border-none bg-field-light dark:bg-field-dark rounded-md w-full h-11 pl-8 p-3 text-primary-light dark:text-primary-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark active:bg-field-light dark:active:bg-field-dark appearance-none'
+                        className='outline-none border-none bg-field-light dark:bg-field-dark rounded-md w-full h-9 pl-8 p-3 text-primary-light dark:text-primary-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark active:bg-field-light dark:active:bg-field-dark appearance-none'
                         placeholder='Enter candidate name'
                         onChange={(e) => setNameInput(e.target.value)}
                         value={nameInput}
                     />
                 </div>
-                <div className='flex flex-col w-full flex-1 relative'>
+                <div className='flex flex-col w-full flex-1 h-9 relative max-sm:hidden'>
                     <SortCandidates
                         sort={sort}
                         setSort={setSort}
                     />
                 </div>
-            </div>
-            <div className='flex flex-1 gap-3 w-full'>
-                <div className={`flex flex-col w-full relative flex-1`}>
-                    <FilterMenu
-                        options={[
-                            { value: "all", label: "All" },
-                            { value: "first", label: "First Year" },
-                            { value: "second", label: "Second Year" },
-                            { value: "third", label: "Third Year" },
-                            { value: "fourth", label: "Fourth Year" }
-                        ]}
-                        filter={year}
-                        setFilter={setYear}
-                        label={year === "all" || !isNotMobile ? "Year" : ""}
-                        showSelected={isNotMobile}
+                <div className='flex items-center sm:hidden'>
+                    <Button
+                        text='Filters'
+                        className='h-9 px-4 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                        type='button'
+                        onClick={() => setShowMobileFilters(true)}
                     />
                 </div>
-                <div className={`flex flex-col w-full relative flex-1`}>
-                    <FilterCandidatesByClass
+            </div>
+            <div className='flex items-center justify-between flex-1 gap-6 max-sm:hidden'>
+                <ViewCandidatesFilters
+                    year={year}
+                    setYear={setYear}
+                    className={className}
+                    setClassName={setClassName}
+                    category={category}
+                    setCategory={setCategory}
+                    status={status}
+                    setStatus={setStatus}
+                />
+            </div>
+            {showMobileFilters && (
+                <MobileFiltersContainer
+                    showMobileFilters={showMobileFilters}
+                    setShowMobileFilters={setShowMobileFilters}
+                    modalId='Candidate Filters'
+                >
+                    <ViewCandidatesFilters
+                        year={year}
+                        setYear={setYear}
                         className={className}
                         setClassName={setClassName}
-                        showSelected={isNotMobile}
-                        showLabel={className === "all" || !isNotMobile}
+                        category={category}
+                        setCategory={setCategory}
+                        status={status}
+                        setStatus={setStatus}
+                        sort={sort}
+                        setSort={setSort}
                     />
-                </div>
-                {role === "admin" && (
-                    <div className={`flex flex-col w-full relative flex-1`}>
-                        <FilterMenu
-                            options={[
-                                { value: "all", label: "All" },
-                                { value: "approved", label: "Approved" },
-                                { value: "rejected", label: "Rejected" },
-                                { value: "pending", label: "Pending" },
-                                { value: "withdrawn", label: "Withdrawn" }
-                            ]}
-                            filter={status}
-                            setFilter={setStatus}
-                            label={
-                                status === "all" || !isNotMobile ? "Status" : ""
-                            }
-                            showSelected={isNotMobile}
-                        />
-                    </div>
-                )}
-            </div>
+                </MobileFiltersContainer>
+            )}
         </div>
     )
 }

@@ -13,6 +13,7 @@ const ViewCandidates = () => {
     const [year, setYear] = useState("all")
     const [className, setClassName] = useState("all")
     const [status, setStatus] = useState("all")
+    const [category, setCategory] = useState("all")
 
     const { isLoading, setIsLoading } = useOutletContext()
 
@@ -53,8 +54,13 @@ const ViewCandidates = () => {
             list = list.filter((l) => sem.includes(l.semester))
         }
 
+        // filter by category
+        if (category !== "all") {
+            list = list.filter((l) => l.category.toLowerCase() === category)
+        }
+
         return list
-    }, [candidates, className, year, sort, nameInput])
+    }, [candidates, className, year, sort, nameInput, category])
 
     useEffect(() => {
         const fetchCandidates = async () => {
@@ -97,6 +103,8 @@ const ViewCandidates = () => {
                     setClassName={setClassName}
                     status={status}
                     setStatus={setStatus}
+                    category={category}
+                    setCategory={setCategory}
                 />
                 {visibleCandidates.length > 0 && (
                     <div className='flex flex-col flex-[1_1_0px] gap-3 overflow-y-auto custom-scrollbar rounded-md bg-card-light dark:bg-card-dark px-2 py-4'>
