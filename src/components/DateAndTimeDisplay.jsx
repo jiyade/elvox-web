@@ -21,13 +21,13 @@ const DateAndTimeDisplay = ({ timestamp }) => {
     const { date, time } = formatDateParts(timestamp)
 
     return (
-        <p className='flex items-center flex-1 gap-2'>
+        <div className='flex items-center flex-1 gap-2'>
             <FaRegCalendar className='text-accent' />
             <p className='flex max-sm:flex-col sm:gap-1 font-semibold'>
                 <span>{date},</span>
                 <span>{time}</span>
             </p>
-        </p>
+        </div>
     )
 }
 
