@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { useElectionStore, useModalStore } from "../stores"
+import { useElectionStore } from "../stores"
 import api from "../api/api"
 import toast from "react-hot-toast"
 import FullScreenLoader from "./FullScreenLoader"
