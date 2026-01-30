@@ -6,24 +6,16 @@ const statusStyles = {
     LOST: "bg-red-400/40 dark:bg-red-400/20 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 inline-block px-3 py-1 rounded-xl text-xs font-medium"
 }
 
-const getYear = (sem) => {
-    const y = Math.ceil(sem / 2)
-    return ["First", "Second", "Third", "Fourth"][y - 1] + " year"
-}
-
-const ResultsListItem = ({ result }) => {
+const ResultsListItem = ({ result, category }) => {
     return (
-        <div className='flex flex-col gap-3 dark:bg-[#16171d] bg-bg-light text-primary-light dark:text-primary-dark rounded-md px-3 py-2'>
+        <div className='flex flex-col gap-3 dark:bg-[#16171d] bg-bg-light text-primary-light dark:text-primary-dark px-3 py-2'>
             <div className='flex items-center justify-between gap-3 py-2 border-b border-gray-500'>
-                <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5 text-[15px]'>
-                    <span>{result?.class} </span>
-                    <span className='text-[13px]'>
-                        ({getYear(result?.semester)})
-                    </span>
+                <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5'>
+                    {category}
                 </p>
-                <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5 text-[15px]'>
+                <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5'>
                     <span>
-                        Total votes<span className='max-sm:hidden'>: </span>
+                        Total votes<span className='max-sm:hidden'>:</span>
                     </span>
                     <span>{result?.totalVotes}</span>
                 </p>
@@ -34,7 +26,7 @@ const ResultsListItem = ({ result }) => {
                     .map((candidate) => (
                         <div
                             key={candidate?.id}
-                            className='grid grid-cols-[6fr_1fr] max-sm:gap-y-7 sm:grid-cols-[1fr_1.5fr_1fr_0.5fr] sm:gap-x-8 py-2 items-center border-b border-gray-500 last:border-none'
+                            className='grid grid-cols-[6fr_1fr] max-sm:gap-y-7 sm:grid-cols-[1fr_1.5fr_1fr_0.5fr] sm:gap-x-8 py-2 items-center'
                         >
                             <p>{candidate?.name}</p>
                             <VoteProgressBar
