@@ -8,7 +8,8 @@ const useElectionStore = create((set) => ({
                 ...state.election,
                 ...data
             }
-        }))
+        })),
+    deleteElection: () => set(() => ({ election: {} }))
 }))
 
 export default useElectionStore
