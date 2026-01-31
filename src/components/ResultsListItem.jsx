@@ -7,11 +7,16 @@ const statusStyles = {
 }
 
 const ResultsListItem = ({ result, category }) => {
+    const hasTiedCandidates = result?.candidates?.some(
+        (candidate) => candidate?.status === "TIE"
+    )
+
     return (
         <div className='flex flex-col gap-3 dark:bg-[#16171d] bg-bg-light text-primary-light dark:text-primary-dark px-3 py-2'>
             <div className='flex items-center justify-between gap-3 py-2 border-b border-gray-500'>
                 <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5'>
-                    {category}
+                    <span>{category}</span>
+                    {hasTiedCandidates && <span>(Tie breaker needed)</span>}
                 </p>
                 <p className='flex sm:items-center sm:gap-1 max-sm:flex-col max-sm:gap-0.5'>
                     <span>
@@ -22,7 +27,7 @@ const ResultsListItem = ({ result, category }) => {
             </div>
             <div className='flex flex-col gap-2'>
                 {result?.candidates
-                    .toSorted((a, b) => b.votes - a.votes)
+                    .toSorted((a, b) => a.rank - b.rank)
                     .map((candidate) => (
                         <div
                             key={candidate?.id}
