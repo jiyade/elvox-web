@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form"
 const SubmitAppealFormReadOnly = ({ role }) => {
     const { register } = useFormContext()
     return (
-        <div className='flex flex-1 gap-3'>
+        <div className='flex max-sm:flex-col gap-3'>
             <div className='flex flex-col flex-1 gap-2'>
                 <p>Name</p>
                 <input

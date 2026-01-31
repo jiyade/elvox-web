@@ -93,7 +93,7 @@ const SubmitAppealFormModal = ({
                     <div className='flex flex-col gap-5 flex-1 overflow-y-auto custom-scrollbar py-1'>
                         <SubmitAppealFormReadOnly role={user.role} />
                         <SubmitAppealFormCategory />
-                        <div className='flex flex-col flex-1 gap-2'>
+                        <div className='flex flex-col gap-2'>
                             <p>
                                 Election <span className='text-red-500'>*</span>
                             </p>

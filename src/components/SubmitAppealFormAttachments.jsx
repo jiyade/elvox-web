@@ -42,7 +42,7 @@ const SubmitAppealFormAttachments = () => {
     }
 
     return (
-        <div className='flex flex-col flex-1 gap-2'>
+        <div className='flex flex-col gap-2'>
             <p>
                 Supporting Evidence{" "}
                 <span className='text-secondary-light dark:text-secondary-dark'>

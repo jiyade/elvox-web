@@ -22,7 +22,7 @@ const SubmitAppealFormCategory = () => {
     } = useFormContext()
 
     return (
-        <div className='flex flex-col flex-1 gap-2'>
+        <div className='flex flex-col gap-2'>
             <p>
                 Appeal Category <span className='text-red-500'>*</span>
             </p>

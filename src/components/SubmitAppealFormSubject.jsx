@@ -11,7 +11,7 @@ const SubmitAppealFormSubject = () => {
     const subject = watch("subject", "")
 
     return (
-        <div className='flex flex-col flex-1 gap-2'>
+        <div className='flex flex-col gap-2'>
             <p>
                 Subject <span className='text-red-500'>*</span>
             </p>

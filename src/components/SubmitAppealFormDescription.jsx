@@ -11,7 +11,7 @@ const SubmitAppealFormDescription = () => {
     const description = watch("description", "")
 
     return (
-        <div className='flex flex-col flex-1 gap-2'>
+        <div className='flex flex-col gap-2'>
             <p>
                 Appeal Description <span className='text-red-500'>*</span>
             </p>
