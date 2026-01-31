@@ -52,18 +52,18 @@ const VerifyVoterDetails = ({ student, verify, reset }) => {
                     <div className='flex gap-4'>
                         <Button
                             text='Reset'
-                            className='w-full h-11 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                            className='w-full h-11 text-sm px-2 bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
                             type='button'
                             onClick={reset}
                         />
                         <Button
                             text='Verify & Generate OTP'
-                            className='w-full h-11 text-sm bg-accent hover:bg-button-hover'
+                            className='w-full h-11 text-sm px-2 bg-accent hover:bg-button-hover'
                             type='button'
                             onClick={verify}
                         />
                     </div>
-                    <p className='text-secondary-light dark:text-secondary-dark text-sm text-center'>
+                    <p className='text-secondary-light dark:text-secondary-dark text-xs sm:text-sm text-center'>
                         Generates a time-limited voting OTP. OTP can be
                         regenerated until the vote is cast
                     </p>
