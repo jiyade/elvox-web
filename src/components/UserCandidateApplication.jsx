@@ -1,5 +1,5 @@
 import capitalize from "../utils/capitalize"
-import { useAuthStore } from "../stores"
+import { useAuthStore, useElectionStore } from "../stores"
 import Button from "./Button"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
@@ -110,6 +110,7 @@ const UserCandidateApplication = ({
     const [isLoading, setIsLoading] = useState(false)
 
     const { user } = useAuthStore()
+    const { election } = useElectionStore()
 
     const displayDetails = {
         ...candidate,
@@ -127,8 +128,7 @@ const UserCandidateApplication = ({
     })
 
     const showWithdrawButton =
-        candidate.status !== "rejected" &&
-        Date.now() < new Date(candidate.nomination_end)
+        candidate.status !== "rejected" && election?.status === "nominations"
 
     const handleWithdraw = async () => {
         if (!password) return setError("Password is required")
