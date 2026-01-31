@@ -24,6 +24,9 @@ const Results = () => {
     const hasFilters = Boolean(status || classValue || year)
     const hasResults = results.length > 0
 
+    const resultPublishedForElection =
+        elections.find((el) => el.id === electionId)?.result_published ?? false
+
     useEffect(() => {
         const fetchElections = async () => {
             try {
@@ -105,13 +108,13 @@ const Results = () => {
                         {elections.length === 0 && "No elections found"}
 
                         {electionId &&
-                            !hasResults &&
-                            !hasFilters &&
+                            !resultPublishedForElection &&
                             "No results published for this election"}
 
                         {electionId &&
                             !hasResults &&
                             hasFilters &&
+                            resultPublishedForElection &&
                             "No results match the selected filters"}
                     </h2>
                 </div>
