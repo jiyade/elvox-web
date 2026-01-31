@@ -81,7 +81,7 @@ const ApproveApplications = () => {
         <div className='flex flex-col items-center px-2 md:px-5 lg:px-9 py-5 flex-1 min-h-0'>
             <title>Approve Applications</title>
             {candidates?.length > 0 && (
-                <div className='flex flex-col flex-1 w-full gap-8 max-w-5xl min-h-0'>
+                <div className='flex flex-col flex-1 w-full gap-8 max-w-6xl min-h-0'>
                     <div className='flex flex-col flex-[1_1_0px] gap-3 overflow-y-auto custom-scrollbar rounded-md bg-card-light dark:bg-card-dark px-2 py-4'>
                         {candidates.map((candidate, i) => (
                             <div

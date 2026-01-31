@@ -104,7 +104,7 @@ const Appeals = () => {
             <title>Appeals</title>
             {!isLoading &&
                 (role !== "admin" ? appeals.length > 0 : electionId) && (
-                    <div className='flex flex-col w-full gap-5 max-w-5xl py-2'>
+                    <div className='flex flex-col w-full gap-5 max-w-6xl py-2'>
                         <AppealsHeader
                             setShowAppealForm={setShowAppealForm}
                             sort={sort}

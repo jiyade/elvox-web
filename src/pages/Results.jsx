@@ -77,7 +77,7 @@ const Results = () => {
         <div className='flex flex-col justify-center min-h-0 items-center px-2 md:px-5 lg:px-9 py-2 flex-1'>
             <title>Results</title>
             {elections.length > 0 && (
-                <div className='flex flex-col w-full flex-1 gap-4 max-w-5xl min-h-0 text-sm'>
+                <div className='flex flex-col w-full flex-1 gap-4 max-w-6xl min-h-0 text-sm'>
                     <ResultsHeader
                         classValue={classValue}
                         setClassValue={setClassValue}
