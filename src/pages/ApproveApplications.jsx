@@ -59,7 +59,7 @@ const ApproveApplications = () => {
         const fetchCandidates = async () => {
             try {
                 setIsLoading(true)
-                const res = await api.get("/candidates?status=pending")
+                const res = await api.get("/candidates/pending")
                 setCandidates(res.data)
             } catch (err) {
                 toast.error(
@@ -80,7 +80,7 @@ const ApproveApplications = () => {
     return (
         <div className='flex flex-col items-center px-2 md:px-5 lg:px-9 py-5 flex-1 min-h-0'>
             <title>Approve Applications</title>
-            {candidates?.length > 0 && (
+            {candidates?.length > 0 && election?.status === "nominations" && (
                 <div className='flex flex-col flex-1 w-full gap-8 max-w-6xl min-h-0'>
                     <div className='flex flex-col flex-[1_1_0px] gap-3 overflow-y-auto custom-scrollbar rounded-md bg-card-light dark:bg-card-dark px-2 py-4'>
                         {candidates.map((candidate, i) => (
@@ -125,10 +125,17 @@ const ApproveApplications = () => {
                 </div>
             )}
 
-            {!candidates.length && (
+            {!candidates.length && election?.status === "nominations" && (
                 <div className='flex px-3 py-4 gap-8 flex-1 items-center justify-center'>
                     <h2 className='text-center text-primary-light dark:text-primary-dark text-2xl md:text-3xl lg:text-4xl font-black'>
                         No Pending Candidate Applications To Show For Your Class
+                    </h2>
+                </div>
+            )}
+            {election?.status !== "nominations" && (
+                <div className='flex px-3 py-4 gap-8 flex-1 items-center justify-center'>
+                    <h2 className='text-center text-primary-light dark:text-primary-dark text-2xl md:text-3xl lg:text-4xl font-black'>
+                        Not available at the current state
                     </h2>
                 </div>
             )}
