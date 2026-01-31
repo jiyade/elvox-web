@@ -79,29 +79,33 @@ const ManageElectionConfiguration = ({
                         }}
                     />
                 </div>
-                <div className='grid grid-cols-[1fr_auto] gap-x-3 pb-3 items-center'>
-                    <div className='flex gap-2 items-center'>
-                        <p>Automatically Publish Results After Voting Ends</p>
-                        <InfoTooltip
-                            message={
-                                election?.status !== "post-voting" &&
-                                election?.status !== "closed"
-                                    ? "If enabled, results will be published automatically when voting finishes"
-                                    : "Cannot be changed at this stage"
+                {!election?.result_published && (
+                    <div className='grid grid-cols-[1fr_auto] gap-x-3 pb-3 items-center'>
+                        <div className='flex gap-2 items-center'>
+                            <p>
+                                Automatically Publish Results After Voting Ends
+                            </p>
+                            <InfoTooltip
+                                message={
+                                    election?.status !== "post-voting" &&
+                                    election?.status !== "closed"
+                                        ? "If enabled, results will be published automatically when voting finishes"
+                                        : "Cannot be changed at this stage"
+                                }
+                            />
+                        </div>
+                        <Toggle
+                            checked={election?.auto_publish_results}
+                            onChange={handleAutoPublishToggle}
+                            disabled={
+                                isLoading ||
+                                isAutoPublishLoading ||
+                                election?.status === "post-voting" ||
+                                election?.status === "closed"
                             }
                         />
                     </div>
-                    <Toggle
-                        checked={election?.auto_publish_results}
-                        onChange={handleAutoPublishToggle}
-                        disabled={
-                            isLoading ||
-                            isAutoPublishLoading ||
-                            election?.status === "post-voting" ||
-                            election?.status === "closed"
-                        }
-                    />
-                </div>
+                )}
                 {election?.status === "post-voting" &&
                     election?.result_published === false &&
                     election?.auto_publish_results === false && (
