@@ -1,8 +1,8 @@
+import { useState } from "react"
 import { useAuthStore } from "../stores"
+import AppealHeaderFilters from "./AppealHeaderFilters"
+import MobileFiltersContainer from "./MobileFiltersContainer"
 import Button from "./Button"
-import FilterMenu from "./FilterMenu"
-import SortByTime from "./SortByTime"
-import { useMediaQuery } from "react-responsive"
 
 const AppealsHeader = ({
     setShowAppealForm,
@@ -14,11 +14,11 @@ const AppealsHeader = ({
     electionId,
     setElectionId
 }) => {
+    const [showMobileFilters, setShowMobileFilters] = useState(false)
+
     const {
         user: { role }
     } = useAuthStore()
-
-    const isMedium = useMediaQuery({ minWidth: 793 })
 
     return (
         <div className='flex items-center justify-between flex-1'>
@@ -35,55 +35,45 @@ const AppealsHeader = ({
                 </>
             )}
             {role === "admin" && (
-                <div className='flex gap-3 w-full'>
-                    <div className={`flex relative flex-1 `}>
-                        <FilterMenu
-                            options={elections}
-                            filter={electionId}
-                            setFilter={setElectionId}
-                            label={isMedium ? "" : "Election"}
-                            showSelected={isMedium}
-                        />
-                    </div>
-                    <div className={`flex relative flex-1 `}>
-                        <FilterMenu
-                            filter={category}
-                            setFilter={setCategory}
-                            label={
-                                category === "all" || !isMedium
-                                    ? "Category"
-                                    : ""
-                            }
-                            options={[
-                                { value: "all", label: "All" },
-                                {
-                                    value: "candidate_application",
-                                    label: "Candidate Application"
-                                },
-                                {
-                                    value: "election_result",
-                                    label: "Election Result"
-                                },
-                                {
-                                    value: "voting_issue",
-                                    label: "Voting Issue"
-                                },
-                                {
-                                    value: "account_access",
-                                    label: "Account / Access"
-                                },
-                                { value: "other", label: "Other" }
-                            ]}
-                            showSelected={isMedium}
-                        />
-                    </div>
-                    <div className={`flex relative flex-1`}>
-                        <SortByTime
+                <>
+                    <div className='flex flex-1 max-sm:hidden'>
+                        <AppealHeaderFilters
+                            elections={elections}
+                            electionId={electionId}
+                            setElectionId={setElectionId}
+                            category={category}
+                            setCategory={setCategory}
                             sort={sort}
                             setSort={setSort}
                         />
                     </div>
-                </div>
+                    <div className='flex items-center w-full sm:hidden'>
+                        <Button
+                            text='Filters'
+                            className='h-9 px-4 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                            type='button'
+                            onClick={() => setShowMobileFilters(true)}
+                        />
+                    </div>
+
+                    {showMobileFilters && (
+                        <MobileFiltersContainer
+                            showMobileFilters={showMobileFilters}
+                            setShowMobileFilters={setShowMobileFilters}
+                            modalId='Appeal Filters'
+                        >
+                            <AppealHeaderFilters
+                                elections={elections}
+                                electionId={electionId}
+                                setElectionId={setElectionId}
+                                category={category}
+                                setCategory={setCategory}
+                                sort={sort}
+                                setSort={setSort}
+                            />
+                        </MobileFiltersContainer>
+                    )}
+                </>
             )}
         </div>
     )
