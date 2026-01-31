@@ -20,7 +20,7 @@ const ManageElection = () => {
     const [error, setError] = useState(null)
     const [showEditElectionModal, setShowEditElectionModal] = useState(false)
 
-    const { election, setElection } = useElectionStore()
+    const { election, setElection, deleteElection } = useElectionStore()
 
     const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ const ManageElection = () => {
             toast.success("Election successfully deleted", {
                 id: "election-delete-success"
             })
-            setElection({})
+            deleteElection()
             navigate("/")
         } catch (err) {
             toast.error(
@@ -72,6 +72,8 @@ const ManageElection = () => {
             toast.success("Results successfully published", {
                 id: "publish-results-success"
             })
+
+            setElection({ result_published: true })
         } catch (err) {
             toast.error(
                 err.response?.data?.error ||
