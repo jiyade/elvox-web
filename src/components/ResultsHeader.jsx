@@ -5,6 +5,7 @@ import ResultFiltersMobile from "./ResultFiltersMobile"
 import ResultsFiltersNonMobilecreen from "./ResultsFiltersNonMobilecreen"
 import ElectionDetails from "./ElectionDetails"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi"
+import ExportResultButton from "./ExportResultButton"
 
 const ResultsHeader = ({
     electionId,
@@ -24,6 +25,20 @@ const ResultsHeader = ({
     const [showMobileFilters, setShowMobileFilters] = useState(false)
     const [showElectionDetails, setShowElectionDetails] = useState(false)
 
+    const exportResults = async (format) => {
+        const params = new URLSearchParams({
+            format,
+            status,
+            class: classValue,
+            year
+        })
+
+        window.open(
+            `${import.meta.env.VITE_API_URL}/results/${electionId}/export?${params.toString()}`,
+            "_blank"
+        )
+    }
+
     return (
         <div className='flex flex-col gap-4'>
             <div className='flex items-center justify-between gap-6 rounded-xl py-3'>
@@ -35,12 +50,7 @@ const ResultsHeader = ({
                             type='button'
                             onClick={() => setShowMobileFilters(true)}
                         />
-                        <Button
-                            text='Export'
-                            className='h-9 px-4 text-sm bg-accent hover:bg-button-hover'
-                            type='button'
-                            onClick={() => {}}
-                        />
+                        <ExportResultButton exportResults={exportResults} />
                     </div>
                     {showMobileFilters && (
                         <MobileFiltersContainer
@@ -83,12 +93,7 @@ const ResultsHeader = ({
                         setStatus={setStatus}
                         setStatusOpen={setStatusOpen}
                     />
-                    <Button
-                        text='Export'
-                        className='h-9 px-4 text-sm bg-accent hover:bg-button-hover'
-                        type='button'
-                        onClick={() => {}}
-                    />
+                    <ExportResultButton exportResults={exportResults} />
                 </div>
             </div>
             <div className='flex flex-col justify-between gap-3'>
