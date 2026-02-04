@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 const useTiedCandidatesStore = create((set) => ({
-    tiedCandidatesData: null,
+    tiedCandidatesData: { hasTie: false },
 
     setTiedCandidatesData: (data) =>
         set({

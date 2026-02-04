@@ -227,7 +227,7 @@ const ProtectedRoute = () => {
                     !checkedIfSupervisor) ||
                 (isElectionScheduled &&
                     election.id &&
-                    user?.tutor_of !== null &&
+                    user?.tutor_of &&
                     !checkedTie)))
     )
         return <FullScreenLoader />
