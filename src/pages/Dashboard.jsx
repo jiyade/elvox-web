@@ -35,7 +35,9 @@ const Dashboard = () => {
     const DashboardOptions = dashboardOptions[role]
 
     const { election } = useElectionStore()
-    const { tiedCandidatesData: hasTie } = useTiedCandidatesStore()
+    const {
+        tiedCandidatesData: { hasTie }
+    } = useTiedCandidatesStore()
 
     const isElectionScheduled = Object.keys(election).length > 0
 
