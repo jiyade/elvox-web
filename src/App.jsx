@@ -24,6 +24,7 @@ const VerifyVoter = lazy(() => import("./pages/VerifyVoter"))
 const ChooseSupervisors = lazy(() => import("./pages/ChooseSupervisors"))
 const ManageElection = lazy(() => import("./pages/ManageElection"))
 const AuditLogs = lazy(() => import("./pages/AuditLogs"))
+const TieBreaker = lazy(() => import("./pages/TieBreaker"))
 
 const ThemeToggle = ({ children }) => {
     const { theme } = useThemeStore()
@@ -103,6 +104,11 @@ const routes = [
                 path: "/logs",
                 element: <AuditLogs />,
                 handle: { allowed: ["admin"] }
+            },
+            {
+                path: "/tie-break",
+                element: <TieBreaker />,
+                handle: { allowed: ["tutor"] }
             },
             {
                 path: "/unauthorized",
