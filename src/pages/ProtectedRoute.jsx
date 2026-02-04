@@ -50,7 +50,8 @@ const ProtectedRoute = () => {
             "/approve-applications": "Approve Applications",
             "/choose-supervisors": "Choose Supervisors",
             "/manage-election": "Manage Election",
-            "/logs": "Audit Logs"
+            "/logs": "Audit Logs",
+            "/tie-break": "Tie Breaker"
         }
 
         return titles[pathname]
