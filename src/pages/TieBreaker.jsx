@@ -74,6 +74,7 @@ const TieBreaker = () => {
             if (!res.data?.hasTie) navigate('/')
 
             setTiedCandidatesData(res.data)
+            setChecked(false)
 
             toast.success('Tie-break resolved successfully')
         } catch (err) {
