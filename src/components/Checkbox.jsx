@@ -10,7 +10,7 @@ function Checkbox({ checked, onChange, label, disabled = false }) {
             />
 
             <div
-                className={`h-4 w-4 rounded border flex items-center justify-center
+                className={`h-4 w-4 shrink-0 rounded border flex items-center justify-center
           ${checked ? "border-[#765ac1] bg-[#765ac1]" : "border-gray-400 bg-white"}
           ${disabled ? "opacity-50 cursor-not-allowed" : ""}
         `}

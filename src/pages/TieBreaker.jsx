@@ -113,7 +113,7 @@ const TieBreaker = () => {
                                 items={items}
                                 disabled={isLoading || !checked}
                             />
-                            <div className='flex items-center justify-between gap-6'>
+                            <div className='flex max-sm:flex-col sm:items-center justify-between gap-6'>
                                 <Checkbox
                                     checked={checked}
                                     onChange={setChecked}
