@@ -14,9 +14,11 @@ import TiedCandidatesContainer from "../components/TiedCandidatesContainer"
 import toast from "react-hot-toast"
 import api from "../api/api"
 import { useNavigate } from "react-router-dom"
+import TieBreakerConfirm from "../components/TieBreakerConfirm"
 
 const TieBreaker = () => {
     const [checked, setChecked] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
     const { tiedCandidatesData, setTiedCandidatesData } =
@@ -79,6 +81,7 @@ const TieBreaker = () => {
             )
         } finally {
             setIsLoading(false)
+            setShowConfirm(false)
         }
     }
 
@@ -120,7 +123,7 @@ const TieBreaker = () => {
                                     text='Submit'
                                     className='px-5 py-2 text-sm bg-accent hover:bg-button-hover'
                                     type='button'
-                                    onClick={submitTieBreaker}
+                                    onClick={() => setShowConfirm(true)}
                                     disabled={!checked}
                                 />
                             </div>
@@ -134,10 +137,13 @@ const TieBreaker = () => {
                         </h2>
                     </div>
                 )}
-                {isLoading && (
-                    <div className='flex justify-between items-center'>
-                        <FullScreenLoader />
-                    </div>
+                {showConfirm && (
+                    <TieBreakerConfirm
+                        isOpen={showConfirm}
+                        setIsOpen={setShowConfirm}
+                        isLoading={isLoading}
+                        handleConfirm={submitTieBreaker}
+                    />
                 )}
             </div>
         </DndContext>
