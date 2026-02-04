@@ -9,7 +9,8 @@ import {
     useAuthStore,
     useElectionStore,
     useModalStore,
-    useNotificationStore
+    useNotificationStore,
+    useTiedCandidatesStore
 } from "../stores"
 import Header from "../components/Header"
 import ChangePasswordModal from "../components/ChangePasswordModal"
@@ -24,6 +25,7 @@ const ProtectedRoute = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [electionLoaded, setElectionLoaded] = useState(false)
     const [checkedIfSupervisor, setCheckedIfSupervisor] = useState(false)
+    const [checkedTie, setCheckedTie] = useState(false)
 
     const { isAuthenticated, isUserLoaded, user, setRole } = useAuthStore()
     const { pathname } = useLocation()
@@ -56,6 +58,7 @@ const ProtectedRoute = () => {
 
     const { election, setElection } = useElectionStore()
     const { setNotifications } = useNotificationStore()
+    const { setTiedCandidatesData } = useTiedCandidatesStore()
 
     const isElectionScheduled = Object.keys(election).length > 0
 
@@ -101,6 +104,46 @@ const ProtectedRoute = () => {
         if (election.id && user?.role === "teacher" && isAuthenticated)
             checkIfSupervisor()
     }, [election.id, setRole, user?.role, isAuthenticated])
+
+    useEffect(() => {
+        if (
+            !electionLoaded ||
+            election?.status !== "post-voting" ||
+            !user?.tutor_of
+        )
+            return
+
+        const checkHasTie = async () => {
+            try {
+                setIsLoading(true)
+
+                const res = await api.get(
+                    `/elections/${election?.id}/classes/${user?.tutor_of}/tie-breaker`
+                )
+
+                setTiedCandidatesData(res.data)
+            } catch (err) {
+                toast.error(
+                    err.response?.data?.error || "Something went wrong",
+                    {
+                        id: "tie-check-error"
+                    }
+                )
+            } finally {
+                setCheckedTie(true)
+                setIsLoading(false)
+            }
+        }
+
+        if (isAuthenticated) checkHasTie()
+    }, [
+        electionLoaded,
+        election?.id,
+        election?.status,
+        setTiedCandidatesData,
+        user?.tutor_of,
+        isAuthenticated
+    ])
 
     useEffect(() => {
         const fetchNotificaions = async () => {
@@ -180,7 +223,11 @@ const ProtectedRoute = () => {
                 (isElectionScheduled &&
                     election.id &&
                     user?.role === "teacher" &&
-                    !checkedIfSupervisor)))
+                    !checkedIfSupervisor) ||
+                (isElectionScheduled &&
+                    election.id &&
+                    user?.tutor_of !== null &&
+                    !checkedTie)))
     )
         return <FullScreenLoader />
 
