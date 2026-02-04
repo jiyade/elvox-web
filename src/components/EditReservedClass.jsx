@@ -212,7 +212,7 @@ const EditReservedClass = ({ isOpen, setShowEditModal }) => {
                             {visibleReserved.length > 0 &&
                                 election?.status === "draft" && (
                                     <Button
-                                        className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                                        className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                                         onClick={() =>
                                             handleAction("remove-all")
                                         }
@@ -244,7 +244,7 @@ const EditReservedClass = ({ isOpen, setShowEditModal }) => {
                             {visibleCommon.length > 0 &&
                                 election?.status === "draft" && (
                                     <Button
-                                        className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                                        className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                                         onClick={() => handleAction("add-all")}
                                     >
                                         <FaPlus />
@@ -276,7 +276,7 @@ const EditReservedClass = ({ isOpen, setShowEditModal }) => {
                         <div className='flex justify-center flex-1 gap-3'>
                             <Button
                                 text='Cancel'
-                                className='w-1/2 h-11 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                                className='w-1/2 h-11 text-sm bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                                 type='button'
                                 onClick={() => {
                                     setShowEditModal(false)

@@ -25,7 +25,7 @@ const SignUpEnterOTP = ({ setStep, contactInfo }) => {
             <div className='flex justify-center gap-3 w-full'>
                 <Button
                     text='Previous'
-                    className='w-1/2 h-11 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                    className='w-1/2 h-11 text-sm bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                     type='button'
                     onClick={handlePrev}
                 />

@@ -52,7 +52,7 @@ const VerifyVoterDetails = ({ student, verify, reset }) => {
                     <div className='flex gap-4'>
                         <Button
                             text='Reset'
-                            className='w-full h-11 text-sm px-2 bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                            className='w-full h-11 text-sm px-2 bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                             type='button'
                             onClick={reset}
                         />

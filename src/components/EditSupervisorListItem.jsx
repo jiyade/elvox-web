@@ -23,7 +23,7 @@ const EditSupervisorListItem = ({ data, action, handleAction }) => {
             </div>
             <div className='flex items-center'>
                 <Button
-                    className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                    className='text-sm text-primary-light dark:text-primary-dark py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                     onClick={() => handleAction(action, data?.id)}
                 >
                     {action === "add" ? <FaPlus /> : <FaMinus />}

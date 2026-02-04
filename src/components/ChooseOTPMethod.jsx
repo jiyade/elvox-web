@@ -22,7 +22,7 @@ const ChooseOTPMethod = () => {
                     className={`flex flex-col items-center gap-1 w-1/2 py-7 rounded-md cursor-pointer active:scale-95 fo transition-all duration-200 ${
                         method === "email"
                             ? "bg-accent hover:bg-button-hover text-primary-dark"
-                            : "bg-field-light dark:bg-field-dark  hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover text-primary-light dark:text-primary-dark"
+                            : "bg-field-light dark:bg-field-dark  hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark text-primary-light dark:text-primary-dark"
                     }`}
                 >
                     <input
@@ -40,7 +40,7 @@ const ChooseOTPMethod = () => {
                     className={`flex flex-col items-center gap-1 w-1/2 py-7 rounded-md cursor-pointer active:scale-95 transition-all duration-200 ${
                         method === "phone"
                             ? "bg-accent hover:bg-button-hover text-primary-dark"
-                            : "bg-field-light dark:bg-field-dark  hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover text-primary-light dark:text-primary-dark"
+                            : "bg-field-light dark:bg-field-dark  hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark text-primary-light dark:text-primary-dark"
                     }`}
                 >
                     <input

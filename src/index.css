@@ -19,9 +19,10 @@
     --color-field-dark: #323743;
     --color-field-light: #d1d1d6;
     --color-button-hover: #5e46a0;
-    --color-secondary-button: #323743;
-    --color-secondary-button-hover: #2b303b;
-    --color-secondary-button-hover-light: #42495a;
+    --color-secondary-button-light: #6b7280;
+    --color-secondary-button-dark: #323743;
+    --color-secondary-button-hover-light: #5f6672;
+    --color-secondary-button-hover-dark: #2b303b;
     --color-link: #6950ab;
     --color-link-hover: #7c59c9;
     --otp-text: var(--color-primary-light);

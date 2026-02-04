@@ -19,7 +19,7 @@ const ImageInput = ({ name, label }) => {
                 htmlFor={name}
                 className={`inline-flex justify-center items-center bg-field-light dark:bg-field-dark ${
                     preview ? "" : "w-full"
-                } h-32 rounded-md border-2 border-dashed border-gray-500 cursor-pointer dark:hover:bg-secondary-button-hover hover:bg-secondary-button-hover-light ${
+                } h-32 rounded-md border-2 border-dashed border-gray-500 cursor-pointer dark:hover:bg-secondary-button-hover-dark hover:bg-secondary-button-hover-light ${
                     preview ? "" : "p-2"
                 }`}
             >

@@ -77,7 +77,7 @@ const ApproveApplicationExpanded = ({
                                         {label}
                                     </p>
                                 </div>
-                                <Button className='text-sm text-primary-light dark:text-primary-dark border-secondary-light dark:border-secondary-dark border-2 py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'>
+                                <Button className='text-sm text-primary-light dark:text-primary-dark border-secondary-light dark:border-secondary-dark border-2 py-1 px-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'>
                                     <a
                                         href={value}
                                         target='_blank'

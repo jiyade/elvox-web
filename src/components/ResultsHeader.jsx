@@ -46,7 +46,7 @@ const ResultsHeader = ({
                     <div className='flex items-center justify-between flex-1'>
                         <Button
                             text='Filters'
-                            className='h-9 px-4 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                            className='h-9 px-4 text-sm bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                             type='button'
                             onClick={() => setShowMobileFilters(true)}
                         />

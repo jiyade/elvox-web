@@ -93,7 +93,7 @@ const SecretKey = ({ setIsLoading, isLoading }) => {
                         <div className='flex gap-2 h-full min-w-0 justify-self-end'>
                             {secretKey && (
                                 <Button
-                                    className='h-full border border-gray-500 rounded-none px-3 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover text-primary-light dark:text-primary-dark hover:text-primary-dark'
+                                    className='h-full border border-gray-500 rounded-none px-3 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark text-primary-light dark:text-primary-dark hover:text-primary-dark'
                                     onClick={() => {
                                         navigator.clipboard.writeText(secretKey)
                                         toast.success("Secret key copied")
@@ -104,7 +104,7 @@ const SecretKey = ({ setIsLoading, isLoading }) => {
                             )}
                             {secretKey && (
                                 <Button
-                                    className='h-full border border-gray-500 rounded-none px-3 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover text-primary-light dark:text-primary-dark hover:text-primary-dark'
+                                    className='h-full border border-gray-500 rounded-none px-3 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark text-primary-light dark:text-primary-dark hover:text-primary-dark'
                                     onClick={() =>
                                         setRevealed((state) => !state)
                                     }

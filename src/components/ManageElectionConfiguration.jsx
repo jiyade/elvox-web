@@ -72,7 +72,7 @@ const ManageElectionConfiguration = ({
                         text={
                             election?.status === "draft" ? "Configure" : "View"
                         }
-                        className='text-sm text-primary-light dark:text-primary-dark border-secondary-light dark:border-secondary-dark border-2 px-3 py-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover hover:text-primary-dark'
+                        className='text-sm text-primary-light dark:text-primary-dark border-secondary-light dark:border-secondary-dark border-2 px-3 py-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark hover:text-primary-dark'
                         type='button'
                         onClick={() => {
                             setShowReservedEdit(true)

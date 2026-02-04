@@ -198,7 +198,7 @@ const EditSupervisors = ({
                         <div className='flex justify-center flex-1 gap-3'>
                             <Button
                                 text='Cancel'
-                                className='w-1/2 h-11 text-sm bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover'
+                                className='w-1/2 h-11 text-sm bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark'
                                 type='button'
                                 onClick={() => {
                                     setShowEditModal(false)

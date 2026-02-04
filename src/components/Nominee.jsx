@@ -125,7 +125,7 @@ const Nominee = ({ number, setIsLoading }) => {
                                     +91 {nomineeInfo.phone}
                                 </p>
                                 <Button
-                                    className='bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover px-3 max-sm:hidden'
+                                    className='bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark px-3 max-sm:hidden'
                                     onClick={deleteNominee}
                                 >
                                     <MdDelete className='size-4' />
@@ -144,7 +144,7 @@ const Nominee = ({ number, setIsLoading }) => {
                     </div>
                     <div className='flex justify-center items-center w-full sm:hidden'>
                         <Button
-                            className='bg-secondary-button hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover w-full flex justify-center items-center p-3'
+                            className='bg-secondary-button-light dark:bg-secondary-button-dark hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark w-full flex justify-center items-center p-3'
                             onClick={deleteNominee}
                         >
                             <MdDelete className='size-5' />
