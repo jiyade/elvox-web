@@ -3,16 +3,27 @@ import { IoSettingsOutline } from "react-icons/io5"
 import { FaRegFileAlt } from "react-icons/fa"
 import { FiAward } from "react-icons/fi"
 import { LuScroll, LuUsers, LuClipboardList } from "react-icons/lu"
+import { RiListOrdered2 } from "react-icons/ri"
 import { Link } from "react-router-dom"
-import { useAuthStore } from "../stores"
+import { useAuthStore, useElectionStore } from "../stores"
 
-const DashboardOptionsAdmin = () => {
+const DashboardOptionsAdmin = ({ hasTie }) => {
     const {
         user: { tutor_of }
     } = useAuthStore()
 
+    const { election } = useElectionStore()
+
     return (
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 lg:gap-y-3 w-full'>
+            {election?.status === "post-voting" && hasTie && (
+                <Link to='/tie-break'>
+                    <Button className='flex flex-col justify-center items-center py-5 lg:py-7 gap-1 bg-accent hover:bg-button-hover w-full h-full'>
+                        <RiListOrdered2 className='text-primary-dark text-base lg:text-lg' />
+                        <span className=''>Tie Breaker</span>
+                    </Button>
+                </Link>
+            )}
             <Link to='/manage-election'>
                 <Button className='flex flex-col justify-center items-center py-5 lg:py-7 gap-1 bg-accent hover:bg-button-hover w-full h-full'>
                     <IoSettingsOutline className='text-primary-dark text-base lg:text-lg' />
@@ -35,7 +46,7 @@ const DashboardOptionsAdmin = () => {
             )}
             <div
                 className={
-                    tutor_of !== null
+                    tutor_of !== null && !hasTie
                         ? "lg:grid lg:grid-cols-2 lg:col-span-3 lg:gap-x-3 lg:w-full contents"
                         : "contents"
                 }
@@ -68,7 +79,9 @@ const DashboardOptionsAdmin = () => {
                 </Link>
                 <Link
                     to='/logs'
-                    className={tutor_of !== null ? "max-lg:col-span-2" : ""}
+                    className={
+                        tutor_of !== null && !hasTie ? "max-lg:col-span-2" : ""
+                    }
                 >
                     <Button className='flex flex-col justify-center items-center py-5 lg:py-7 gap-1 bg-accent hover:bg-button-hover w-full h-full'>
                         <LuClipboardList className='text-primary-dark text-base lg:text-lg' />

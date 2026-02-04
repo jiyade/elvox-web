@@ -4,7 +4,11 @@ import DashboardOptionsTeacher from "../components/DashboardOptionsTeacher"
 import NotificationAndResults from "../components/NotificationAndResults"
 import DashboardOptionsSupervisor from "../components/DashboardOptionsSupervisor"
 import DashboardOptionsAdmin from "../components/DashboardOptionsAdmin"
-import { useAuthStore, useElectionStore } from "../stores"
+import {
+    useAuthStore,
+    useElectionStore,
+    useTiedCandidatesStore
+} from "../stores"
 import NoActiveElectionAdminDashboard from "../components/NoActiveElectionAdminDashboard"
 import { useOutletContext } from "react-router-dom"
 import NoActiveElectionCommon from "../components/NoActiveElectionCommon"
@@ -14,6 +18,7 @@ import { useState } from "react"
 const Dashboard = () => {
     const [showCreateElectionModal, setShowCreateElectionModal] =
         useState(false)
+
     const {
         user: { role }
     } = useAuthStore()
@@ -30,6 +35,7 @@ const Dashboard = () => {
     const DashboardOptions = dashboardOptions[role]
 
     const { election } = useElectionStore()
+    const { tiedCandidatesData: hasTie } = useTiedCandidatesStore()
 
     const isElectionScheduled = Object.keys(election).length > 0
 
@@ -43,7 +49,7 @@ const Dashboard = () => {
                     {isElectionScheduled ? (
                         <>
                             <ElectionDetails />
-                            <DashboardOptions />
+                            <DashboardOptions hasTie={hasTie} />
                         </>
                     ) : role === "admin" ? (
                         <NoActiveElectionAdminDashboard
