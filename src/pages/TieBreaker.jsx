@@ -1,24 +1,25 @@
-import { useState } from "react"
-import { DndContext } from "@dnd-kit/core"
-import { arrayMove } from "@dnd-kit/sortable"
+import { useState, useEffect } from 'react'
+import { DndContext } from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
 import {
     useAuthStore,
     useElectionStore,
     useTiedCandidatesStore
-} from "../stores"
-import capitalize from "../utils/capitalize"
-import FullScreenLoader from "../components/FullScreenLoader"
-import Button from "../components/Button"
-import Checkbox from "../components/Checkbox"
-import TiedCandidatesContainer from "../components/TiedCandidatesContainer"
-import toast from "react-hot-toast"
-import api from "../api/api"
-import { useNavigate } from "react-router-dom"
-import TieBreakerConfirm from "../components/TieBreakerConfirm"
+} from '../stores'
+import capitalize from '../utils/capitalize'
+import FullScreenLoader from '../components/FullScreenLoader'
+import Button from '../components/Button'
+import Checkbox from '../components/Checkbox'
+import TiedCandidatesContainer from '../components/TiedCandidatesContainer'
+import toast from 'react-hot-toast'
+import api from '../api/api'
+import { useNavigate } from 'react-router-dom'
+import TieBreakerConfirm from '../components/TieBreakerConfirm'
 
 const TieBreaker = () => {
     const [checked, setChecked] = useState(false)
     const [showConfirm, setShowConfirm] = useState(false)
+    const [items, setItems] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     const { tiedCandidatesData, setTiedCandidatesData } =
@@ -26,14 +27,18 @@ const TieBreaker = () => {
 
     const currentCategory = tiedCandidatesData?.categories[0]
 
-    const [items, setItems] = useState(currentCategory?.candidates ?? [])
-
     const { election } = useElectionStore()
     const {
         user: { tutor_of }
     } = useAuthStore()
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!currentCategory) return
+
+        setItems(currentCategory?.candidates)
+    }, [currentCategory?.category])
 
     const handleDragEnd = (event) => {
         const { active, over } = event
@@ -66,17 +71,17 @@ const TieBreaker = () => {
                 `/elections/${election?.id}/classes/${tutor_of}/tie-breaker`
             )
 
-            if (!res.data?.hasTie) navigate("/")
+            if (!res.data?.hasTie) navigate('/')
 
             setTiedCandidatesData(res.data)
 
-            toast.success("Tie-break resolved successfully")
+            toast.success('Tie-break resolved successfully')
         } catch (err) {
             toast.error(
                 err.response?.data?.error ||
-                    "Something went wrong, please try again!",
+                    'Something went wrong, please try again!',
                 {
-                    id: "tie-breaker-submit-error"
+                    id: 'tie-breaker-submit-error'
                 }
             )
         } finally {
