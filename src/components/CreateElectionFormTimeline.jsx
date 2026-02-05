@@ -126,7 +126,14 @@ const CreateElectionFormTimeline = ({ disabled }) => {
                                         value={field.value}
                                         onChange={field.onChange}
                                         disabled={disabled.nominationEnd}
-                                        disabledDate={{ before: new Date(ns) }}
+                                        disabledDate={{
+                                            before: new Date(
+                                                Math.max(
+                                                    new Date(ns),
+                                                    new Date()
+                                                )
+                                            )
+                                        }}
                                     />
                                 )}
                             />
@@ -185,7 +192,14 @@ const CreateElectionFormTimeline = ({ disabled }) => {
                                         value={field.value}
                                         onChange={field.onChange}
                                         disabled={disabled.votingStart}
-                                        disabledDate={{ before: new Date(ne) }}
+                                        disabledDate={{
+                                            before: new Date(
+                                                Math.max(
+                                                    new Date(ne),
+                                                    new Date()
+                                                )
+                                            )
+                                        }}
                                     />
                                 )}
                             />
@@ -244,7 +258,14 @@ const CreateElectionFormTimeline = ({ disabled }) => {
                                         value={field.value}
                                         onChange={field.onChange}
                                         disabled={disabled.votingEnd}
-                                        disabledDate={{ before: new Date(vs) }}
+                                        disabledDate={{
+                                            before: new Date(
+                                                Math.max(
+                                                    new Date(vs),
+                                                    new Date()
+                                                )
+                                            )
+                                        }}
                                     />
                                 )}
                             />
@@ -303,7 +324,14 @@ const CreateElectionFormTimeline = ({ disabled }) => {
                                         value={field.value}
                                         onChange={field.onChange}
                                         disabled={disabled.electionEnd}
-                                        disabledDate={{ before: new Date(ve) }}
+                                        disabledDate={{
+                                            before: new Date(
+                                                Math.max(
+                                                    new Date(ve),
+                                                    new Date()
+                                                )
+                                            )
+                                        }}
                                     />
                                 )}
                             />
