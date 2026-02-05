@@ -39,13 +39,26 @@ const ResultsListItem = ({ result, category }) => {
                                 votes={candidate?.votes}
                                 className='max-sm:hidden'
                             />
-                            {parseInt(candidate.lead) !== 0 ? (
-                                <p className='text-center max-sm:hidden'>
-                                    {candidate.lead.startsWith("-")
-                                        ? `Lost by ${candidate.lead.slice(1)}`
-                                        : `Won by ${candidate.lead}`}
-                                </p>
-                            ) : (
+                            {parseInt(candidate.lead) !== 0 &&
+                                !candidate.hadTie && (
+                                    <p className='text-center max-sm:hidden'>
+                                        {candidate.lead.startsWith("-")
+                                            ? `Lost by ${candidate.lead.slice(1)}`
+                                            : `Won by ${candidate.lead}`}
+                                    </p>
+                                )}
+                            {candidate.hadTie &&
+                                candidate?.status !== "TIE" && (
+                                    <p className='text-center max-sm:hidden'>
+                                        {candidate?.status === "WON"
+                                            ? `Won by Tie-breaker`
+                                            : `Lost by Tie-breaker`}
+                                    </p>
+                                )}
+                            {((parseInt(candidate.lead) === 0 &&
+                                !candidate.hadTie) ||
+                                (candidate.hadTie &&
+                                    candidate.status === "TIE")) && (
                                 <div className='max-sm:hidden' /> // keeps grid alignment
                             )}
 
@@ -61,17 +74,24 @@ const ResultsListItem = ({ result, category }) => {
                                 votes={candidate?.votes}
                                 className='sm:hidden col-span-2'
                             >
-                                {parseInt(candidate.lead) !== 0 ? (
-                                    <p className='absolute bottom-full right-0 pb-1 text-xs text-secondary-light dark:text-secondary-dark'>
-                                        {candidate.lead.startsWith("-")
-                                            ? `Lost by ${candidate.lead.slice(
-                                                  1
-                                              )}`
-                                            : `Won by ${candidate.lead}`}
-                                    </p>
-                                ) : (
-                                    <div /> // keeps grid alignment
-                                )}
+                                {parseInt(candidate.lead) !== 0 &&
+                                    !candidate.hadTie && (
+                                        <p className='absolute bottom-full right-0 pb-1 text-xs text-secondary-light dark:text-secondary-dark'>
+                                            {candidate.lead.startsWith("-")
+                                                ? `Lost by ${candidate.lead.slice(
+                                                      1
+                                                  )}`
+                                                : `Won by ${candidate.lead}`}
+                                        </p>
+                                    )}
+                                {candidate.hadTie &&
+                                    candidate?.status !== "TIE" && (
+                                        <p className='absolute bottom-full right-0 pb-1 text-xs text-secondary-light dark:text-secondary-dark'>
+                                            {candidate?.status === "WON"
+                                                ? `Won by Tie-breaker`
+                                                : `Lost by Tie-breaker`}
+                                        </p>
+                                    )}
                             </VoteProgressBar>
                         </div>
                     ))}
