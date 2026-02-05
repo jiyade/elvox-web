@@ -7,6 +7,7 @@ import { useState } from "react"
 import EditReservedClass from "./EditReservedClass"
 import api from "../api/api"
 import SecretKey from "./SecretKey"
+import ManageActivatedSystems from "./ManageActivatedSystems"
 
 const ManageElectionConfiguration = ({
     setIsLoading,
@@ -14,6 +15,7 @@ const ManageElectionConfiguration = ({
     setShowConfirmDialog
 }) => {
     const [showReservedEdit, setShowReservedEdit] = useState(false)
+    const [showActivatedSystems, setShowActivatedSystems] = useState(false)
     const [isAutoPublishLoading, setIsAutoPublishLoading] = useState(false)
 
     const { election, setElection } = useElectionStore()
@@ -136,6 +138,7 @@ const ManageElectionConfiguration = ({
                     <SecretKey
                         setIsLoading={setIsLoading}
                         isLoading={isLoading}
+                        setShowActivatedSystems={setShowActivatedSystems}
                     />
                 </div>
             )}
@@ -143,6 +146,12 @@ const ManageElectionConfiguration = ({
                 <EditReservedClass
                     isOpen={showReservedEdit}
                     setShowEditModal={setShowReservedEdit}
+                />
+            )}
+            {showActivatedSystems && (
+                <ManageActivatedSystems
+                    isOpen={showActivatedSystems}
+                    setShowEditModal={setShowActivatedSystems}
                 />
             )}
         </div>

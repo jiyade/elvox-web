@@ -8,7 +8,7 @@ import api from "../api/api"
 import { LuClipboard, LuRotateCcw } from "react-icons/lu"
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
 
-const SecretKey = ({ setIsLoading, isLoading }) => {
+const SecretKey = ({ setIsLoading, isLoading, setShowActivatedSystems }) => {
     const [secretKey, setSecretKey] = useState("")
     const [revealed, setRevealed] = useState(false)
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
@@ -72,6 +72,20 @@ const SecretKey = ({ setIsLoading, isLoading }) => {
                         <p>Total Activated Systems</p>
                         <p>{totalActivatedSystems}</p>
                     </div>
+                    {Number(totalActivatedSystems) > 0 && (
+                        <div className='grid grid-cols-[1fr_auto] gap-x-3 pb-3 items-center'>
+                            <div className='flex gap-2 items-center'>
+                                <p>Manage Activated Systems</p>
+                                <InfoTooltip message='View activated voting systems and revoke their access' />
+                            </div>
+                            <Button
+                                text='Manage'
+                                className='text-sm text-primary-light dark:text-primary-dark border-secondary-light dark:border-secondary-dark border-2 px-3 py-2 hover:bg-secondary-button-hover-light dark:hover:bg-secondary-button-hover-dark hover:text-primary-dark'
+                                type='button'
+                                onClick={() => setShowActivatedSystems(true)}
+                            />
+                        </div>
+                    )}
                     <div className='flex gap-2 items-center'>
                         <p>Secret Key</p>
                         <InfoTooltip
