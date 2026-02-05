@@ -222,12 +222,13 @@ const ProtectedRoute = () => {
         (isAuthenticated &&
             ((!isElectionScheduled && !electionLoaded) ||
                 (isElectionScheduled &&
-                    election.id &&
+                    election?.id &&
                     user?.role === "teacher" &&
                     !checkedIfSupervisor) ||
                 (isElectionScheduled &&
-                    election.id &&
+                    election?.id &&
                     user?.tutor_of &&
+                    election?.status === "post-voting" &&
                     !checkedTie)))
     )
         return <FullScreenLoader />
