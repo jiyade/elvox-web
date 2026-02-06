@@ -97,9 +97,7 @@ const AuditLogs = () => {
         setStatus("connecting")
 
         const es = new EventSource(
-            `${
-                import.meta.env.VITE_API_URL
-            }/elections/${electionId}/events/stream`,
+            `${import.meta.env.VITE_API_URL}/elections/${electionId}/sse/logs`,
             {
                 withCredentials: true
             }

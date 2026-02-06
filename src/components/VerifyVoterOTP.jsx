@@ -43,7 +43,7 @@ const VerifyVoterOTP = ({ otpData, nextStep }) => {
 
     useEffect(() => {
         const es = new EventSource(
-            `${import.meta.env.VITE_API_URL}/elections/${otpData.electionId}/events/stream`,
+            `${import.meta.env.VITE_API_URL}/elections/${otpData.electionId}/sse/otp`,
             {
                 withCredentials: true
             }
