@@ -4,34 +4,29 @@ import "react-circular-progressbar/dist/styles.css"
 
 const VerifyVoterOTP = ({ otpData, nextStep }) => {
     const expiresAtMs = new Date(otpData.expiresAt).getTime()
-    const issuedAtMs = new Date(otpData.issuedAt).getTime()
+    const durationMs = otpData.expiresInMs
 
-    const total = Math.ceil((expiresAtMs - issuedAtMs) / 1000)
-    const initialTimeLeft = Math.max(
-        0,
-        Math.ceil((expiresAtMs - Date.now()) / 1000)
+    const getRemainingMs = () => Math.max(0, expiresAtMs - Date.now())
+
+    const [timeLeft, setTimeLeft] = useState(() =>
+        Math.ceil(getRemainingMs() / 1000)
     )
-
-    const [timeLeft, setTimeLeft] = useState(initialTimeLeft)
     const [percentage, setPercentage] = useState(
-        (initialTimeLeft / total) * 100
+        () => (getRemainingMs() / durationMs) * 100
     )
 
     useEffect(() => {
         let timeoutId
 
         const interval = setInterval(() => {
-            const remainingMs = new Date(expiresAtMs) - Date.now()
-            const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000))
+            const remainingMs = Math.max(0, expiresAtMs - Date.now())
 
-            setTimeLeft(remainingSec)
-            setPercentage((remainingSec / total) * 100)
+            setTimeLeft(Math.ceil(remainingMs / 1000))
+            setPercentage((remainingMs / durationMs) * 100)
 
-            if (remainingSec === 0) {
+            if (remainingMs === 0) {
                 clearInterval(interval)
-                timeoutId = setTimeout(() => {
-                    nextStep()
-                }, 1000)
+                timeoutId = setTimeout(nextStep, 1000)
             }
         }, 1000)
 
@@ -39,7 +34,7 @@ const VerifyVoterOTP = ({ otpData, nextStep }) => {
             clearInterval(interval)
             if (timeoutId) clearTimeout(timeoutId)
         }
-    }, [expiresAtMs, nextStep, total])
+    }, [expiresAtMs, nextStep, durationMs])
 
     useEffect(() => {
         const es = new EventSource(
