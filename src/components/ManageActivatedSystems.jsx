@@ -110,7 +110,7 @@ const ManageActivatedSystems = ({ isOpen, setShowEditModal }) => {
                             {activatedSystems.map((system) => (
                                 <div
                                     key={system.id}
-                                    className='flex items-center justify-between px-2 py-3 w-full'
+                                    className='flex items-center justify-between px-2 py-3 w-full gap-2'
                                 >
                                     <div className='flex flex-col gap-1'>
                                         <p className='text-sm'>
