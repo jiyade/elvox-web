@@ -108,7 +108,7 @@ const ProtectedRoute = () => {
 
     useEffect(() => {
         if (
-            !electionLoaded ||
+            (!isElectionScheduled && !electionLoaded) ||
             election?.status !== "post-voting" ||
             !user?.tutor_of
         )
@@ -138,6 +138,7 @@ const ProtectedRoute = () => {
 
         if (isAuthenticated) checkHasTie()
     }, [
+        isElectionScheduled,
         electionLoaded,
         election?.id,
         election?.status,
