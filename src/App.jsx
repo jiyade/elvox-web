@@ -5,6 +5,7 @@ import useBlockImageAndLinkActions from "./hooks/useBlockImageAndLinkActions"
 import { useThemeStore, useAuthStore } from "./stores"
 import { Toaster } from "react-hot-toast"
 import ProtectedRoute from "./pages/ProtectedRoute"
+import AnimatedOutlet from "./components/AnimatedOutlet"
 
 const SignUp = lazy(() => import("./pages/SignUp"))
 const Login = lazy(() => import("./pages/Login"))
@@ -48,75 +49,80 @@ const routes = [
         element: <ProtectedRoute />,
         children: [
             {
-                path: "/",
-                element: <Dashboard />
-            },
-            {
-                path: "/candidate-application",
-                element: <CandidateApplication />,
-                handle: { allowed: ["student"] }
-            },
-            {
-                path: "/candidates",
-                element: <ViewCandidates />
-            },
-            {
-                path: "/profile",
-                element: <Profile />
-            },
-            {
-                path: "/notifications",
-                element: <Notifications />
-            },
-            {
-                path: "/appeals",
-                element: <Appeals />
-            },
-            {
-                path: "/appeals/:id",
-                element: <AppealDetails />
-            },
-            {
-                path: "/results",
-                element: <Results />
-            },
-            {
-                path: "/verify-voter",
-                element: <VerifyVoter />,
-                handle: { allowed: ["supervisor"] }
-            },
-            {
-                path: "/approve-applications",
-                element: <ApproveApplications />,
-                handle: { allowed: ["tutor"] }
-            },
-            {
-                path: "/choose-supervisors",
-                element: <ChooseSupervisors />,
-                handle: { allowed: ["admin"] }
-            },
-            {
-                path: "/manage-election",
-                element: <ManageElection />,
-                handle: { allowed: ["admin"] }
-            },
-            {
-                path: "/logs",
-                element: <AuditLogs />,
-                handle: { allowed: ["admin"] }
-            },
-            {
-                path: "/tie-break",
-                element: <TieBreaker />,
-                handle: { allowed: ["tutor"] }
-            },
-            {
-                path: "/unauthorized",
-                element: <Unauthorized />
-            },
-            {
-                path: "*",
-                element: <NotFound />
+                element: <AnimatedOutlet />,
+                children: [
+                    {
+                        path: "/",
+                        element: <Dashboard />
+                    },
+                    {
+                        path: "/candidate-application",
+                        element: <CandidateApplication />,
+                        handle: { allowed: ["student"] }
+                    },
+                    {
+                        path: "/candidates",
+                        element: <ViewCandidates />
+                    },
+                    {
+                        path: "/profile",
+                        element: <Profile />
+                    },
+                    {
+                        path: "/notifications",
+                        element: <Notifications />
+                    },
+                    {
+                        path: "/appeals",
+                        element: <Appeals />
+                    },
+                    {
+                        path: "/appeals/:id",
+                        element: <AppealDetails />
+                    },
+                    {
+                        path: "/results",
+                        element: <Results />
+                    },
+                    {
+                        path: "/verify-voter",
+                        element: <VerifyVoter />,
+                        handle: { allowed: ["supervisor"] }
+                    },
+                    {
+                        path: "/approve-applications",
+                        element: <ApproveApplications />,
+                        handle: { allowed: ["tutor"] }
+                    },
+                    {
+                        path: "/choose-supervisors",
+                        element: <ChooseSupervisors />,
+                        handle: { allowed: ["admin"] }
+                    },
+                    {
+                        path: "/manage-election",
+                        element: <ManageElection />,
+                        handle: { allowed: ["admin"] }
+                    },
+                    {
+                        path: "/logs",
+                        element: <AuditLogs />,
+                        handle: { allowed: ["admin"] }
+                    },
+                    {
+                        path: "/tie-break",
+                        element: <TieBreaker />,
+                        handle: { allowed: ["tutor"] }
+                    },
+                    {
+                        path: "/unauthorized",
+                        element: <Unauthorized />
+                    },
+                    {
+                        path: "*",
+                        element: <NotFound />
+                    }
+                ]
             }
         ]
     }
