@@ -50,11 +50,13 @@ const ManageActivatedSystems = ({ isOpen, setShowEditModal }) => {
             )
 
             toast.success("System revoked successfully")
+
             if (Number(election?.totalActivatedSystems) > 0) {
                 setElection({
                     totalActivatedSystems: `${Number(election?.totalActivatedSystems) - 1}`
                 })
             }
+
             setShowConfirmationDialog(false)
             setShowEditModal(false)
         } catch (err) {
@@ -64,7 +66,6 @@ const ManageActivatedSystems = ({ isOpen, setShowEditModal }) => {
                     id: "fail-revoke-system"
                 }
             )
-            console.log(err)
         } finally {
             setIsLoading(false)
         }
