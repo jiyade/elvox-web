@@ -4,7 +4,7 @@ import { useState } from "react"
 import FullScreenLoader from "./FullScreenLoader"
 
 const VerifyVoterDetails = ({ student, verify, reset }) => {
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(student.profile_pic ? false : true)
 
     const mapStudent = [
         ["Name", student.name],
@@ -23,14 +23,16 @@ const VerifyVoterDetails = ({ student, verify, reset }) => {
                     className='text-2xl '
                 />
                 <div className='flex max-sm:flex-col max-sm:justify-center items-center gap-10 sm:px-10'>
-                    <div className='flex'>
-                        <img
-                            src={student.profile_pic}
-                            alt={student.name}
-                            className='w-24 h-24 sm:w-30 sm:h-30 rounded-full'
-                            onLoad={() => setLoaded(true)}
-                        />
-                    </div>
+                    {student.profile_pic && (
+                        <div className='flex'>
+                            <img
+                                src={student.profile_pic}
+                                alt={student.name}
+                                className='w-24 h-24 sm:w-30 sm:h-30 rounded-full'
+                                onLoad={() => setLoaded(true)}
+                            />
+                        </div>
+                    )}
                     <div className='flex flex-1 flex-col gap-2.5'>
                         {mapStudent.map(([label, value]) => (
                             <div
