@@ -1,4 +1,5 @@
 import capitalize from "../utils/capitalize"
+import generateInitialAvatar from "../utils/generateInitialAvatar"
 
 const statusStyles = {
     pending:
@@ -30,7 +31,10 @@ const Candidate = ({ candidate }) => {
             <div className='flex gap-3 max-sm:flex-1'>
                 <div className='flex items-center'>
                     <img
-                        src={candidate?.profile_pic}
+                        src={
+                            candidate?.profile_pic ??
+                            generateInitialAvatar(candidate?.name)
+                        }
                         alt={candidate?.name}
                         className='w-12 md:w-16 rounded-full p-1'
                     />

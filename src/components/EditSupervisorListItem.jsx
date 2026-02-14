@@ -1,3 +1,4 @@
+import generateInitialAvatar from "../utils/generateInitialAvatar"
 import Button from "./Button"
 import { FaPlus, FaMinus } from "react-icons/fa6"
 
@@ -7,7 +8,10 @@ const EditSupervisorListItem = ({ data, action, handleAction }) => {
             <div className='flex gap-3'>
                 <div className='flex items-center'>
                     <img
-                        src={data?.profile_pic}
+                        src={
+                            data?.profile_pic ??
+                            generateInitialAvatar(data?.name)
+                        }
                         alt={data?.name}
                         className='w-12 md:w-16 rounded-full p-1'
                     />

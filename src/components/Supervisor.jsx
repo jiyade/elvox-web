@@ -1,10 +1,15 @@
+import generateInitialAvatar from "../utils/generateInitialAvatar"
+
 const Supervisor = ({ supervisor }) => {
     return (
         <div className='flex items-center justify-between gap-3 dark:bg-[#16171d] bg-bg-light text-primary-light dark:text-primary-dark rounded-md px-3 py-2'>
             <div className='flex gap-3'>
                 <div className='flex items-center'>
                     <img
-                        src={supervisor?.profile_pic}
+                        src={
+                            supervisor?.profile_pic ??
+                            generateInitialAvatar(supervisor?.name)
+                        }
                         alt={supervisor?.name}
                         className='w-12 md:w-16 rounded-full p-1'
                     />

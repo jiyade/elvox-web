@@ -5,6 +5,7 @@ import { useState } from "react"
 import { toast } from "react-hot-toast"
 import CandidateApplicationWithdrawDialog from "./CandidateApplicationWithdrawDialog"
 import api from "../api/api"
+import generateInitialAvatar from "../utils/generateInitialAvatar"
 
 const nomineeFields = ["nominee1_name", "nominee2_name"]
 
@@ -175,7 +176,10 @@ const UserCandidateApplication = ({
             <div className='flex flex-col w-full px-4 py-6 rounded-md dark:bg-card-dark bg-card-light shadow-lg text-primary-light dark:text-primary-dark max-w-4xl'>
                 <div className='flex flex-col gap-3 justify-center items-center'>
                     <img
-                        src={candidate?.profile_pic}
+                        src={
+                            candidate?.profile_pic ??
+                            generateInitialAvatar(candidate?.name)
+                        }
                         alt={candidate?.name}
                         className='w-24 rounded-full'
                     />

@@ -1,4 +1,5 @@
 import { useAuthStore } from "../stores"
+import generateInitialAvatar from "../utils/generateInitialAvatar"
 
 const fields = [
     "admno",
@@ -28,7 +29,10 @@ const CandidateDetails = () => {
             <div className='flex flex-col gap-2 divide-y divide-gray-500 w-full break-words'>
                 <div className='flex flex-col justify-center items-center gap-2 pb-2'>
                     <img
-                        src={user?.profile_pic}
+                        src={
+                            user?.profile_pic ??
+                            generateInitialAvatar(user?.name)
+                        }
                         alt={user?.name}
                         className='rounded-full'
                         width={80}
