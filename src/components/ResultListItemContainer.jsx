@@ -23,10 +23,12 @@ const ResultListItemContainer = ({ result }) => {
                     result={result?.results?.general}
                     category='General'
                 />
-                <ResultsListItem
-                    result={result?.results?.reserved}
-                    category='Reserved'
-                />
+                {result?.results?.reserved && (
+                    <ResultsListItem
+                        result={result.results.reserved}
+                        category='Reserved'
+                    />
+                )}
             </div>
         </div>
     )
