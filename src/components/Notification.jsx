@@ -72,7 +72,7 @@ const Notification = ({
             {!notification.is_read && showUnread && (
                 <div>
                     <FaRegCircleCheck
-                        className='text-xl cursor-pointer hover:bg-accent hover:rounded-full active:scale-70 transition-all duration-200'
+                        className='text-xl cursor-pointer hover:text-primary-dark hover:bg-accent hover:rounded-full active:scale-70 transition-all duration-200'
                         onClick={() => markNotificationRead(notification.id)}
                     />
                 </div>
