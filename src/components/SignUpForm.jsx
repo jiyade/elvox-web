@@ -42,10 +42,10 @@ const SignUpForm = ({ children, setIsLoading }) => {
                 })
 
                 if (res.status === 201) {
-                    login(res.data.user)
-                    notifyMobileLogin(res.data.user.id)
+                    login(res.data?.user)
+                    notifyMobileLogin(res.data?.user?.id)
                     navigate("/")
-                    toast.success(`Welcome ${res.data.name}!`, {
+                    toast.success(`Welcome ${res.data?.user?.name}!`, {
                         id: "signup-success"
                     })
                 }
