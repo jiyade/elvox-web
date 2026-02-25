@@ -56,31 +56,32 @@ const Notifications = () => {
     return (
         <div className='flex flex-col justify-center min-h-0 items-center px-2 md:px-5 lg:px-9 py-2 flex-1'>
             <title>Notifications</title>
-            <div className='flex flex-col w-full gap-5 max-w-4xl flex-1 min-h-0'>
-                {notifications?.length > 0 && (
+            {notifications?.length > 0 && (
+                <div className='flex flex-col w-full gap-5 max-w-4xl flex-1 min-h-0'>
                     <NotificationFilterAndSort
                         sort={sort}
                         setSort={setSort}
                         filter={filter}
                         setFilter={setFilter}
                     />
-                )}
-                {visibleNotifications?.length > 0 && (
-                    <div className='flex flex-col flex-1 min-h-0 px-3 py-4 gap-8 rounded-md dark:bg-card-dark bg-card-light shadow-lg text-primary-light dark:text-primary-dark'>
-                        <div className='flex flex-col gap-3 overflow-y-auto custom-scrollbar flex-[1_1_0px]'>
-                            {visibleNotifications.map((notification) => (
-                                <Notification
-                                    key={notification.id}
-                                    notification={notification}
-                                    markRead={markRead}
-                                    showDate
-                                    showUnread
-                                />
-                            ))}
+
+                    {visibleNotifications?.length > 0 && (
+                        <div className='flex flex-col flex-1 min-h-0 px-3 py-4 gap-8 rounded-md dark:bg-card-dark bg-card-light shadow-lg text-primary-light dark:text-primary-dark'>
+                            <div className='flex flex-col gap-3 overflow-y-auto custom-scrollbar flex-[1_1_0px]'>
+                                {visibleNotifications.map((notification) => (
+                                    <Notification
+                                        key={notification.id}
+                                        notification={notification}
+                                        markRead={markRead}
+                                        showDate
+                                        showUnread
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                </div>
+            )}
             {!visibleNotifications.length && (
                 <div className='flex px-3 py-4 flex-1 items-center justify-center'>
                     <h2 className='text-center text-primary-light dark:text-primary-dark text-2xl md:text-3xl lg:text-4xl font-black'>
